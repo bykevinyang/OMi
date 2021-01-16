@@ -189,3 +189,26 @@ def find_disease(data, symptoms_):
                         'url' : wiki_info[1]
         }
         return disease_info, True
+
+def grabTreatment(disease):
+
+  so = wptools.page(str(disease) + ' (disease)').get_parse()
+  infobox = so.data['infobox']
+
+  if 'medication' in infobox:
+    medication = infobox['medication']
+    medication = medication.replace('[', '')
+    medication = medication.replace(']', '')
+
+    return(medication)
+    
+  elif 'treatment' in infobox:
+    medication = infobox['treatment']
+    medication = medication.replace('[', '')
+    medication = medication.replace(']', '')
+
+    return(medication)
+  else:
+    return('OMi cannot find a treatment')
+
+    
