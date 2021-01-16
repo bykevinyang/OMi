@@ -4,8 +4,8 @@ import json
 
 from pprint import pprint
 
-csvPath = 'Data/csv'
-jsonPath = 'Data/json'
+csvPath = 'flask/Data/csv'
+jsonPath = 'flask/Data/json'
 
 
 def find_disease_helper():
