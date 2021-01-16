@@ -13,7 +13,7 @@ from keras.callbacks import ModelCheckpoint
 import matplotlib.pyplot as plt
 
 
-os.listdir("Data/kaggle/input/dermnet")
+os.listdir(".\Data\dermnet")
 
 img_width, img_height = 256, 256
 
@@ -24,7 +24,7 @@ def preprocess_image(path):
     a = preprocess_input(a)
     return a
 
-res = preprocess_image("/kaggle/input/dermnet/train/Acne and Rosacea Photos/07Acne081101.jpg")
+res = preprocess_image("./Data/dermnet/train/Acne and Rosacea Photos/07Acne081101.jpg")
 print(res)
 
 HEIGHT = 300
@@ -34,7 +34,7 @@ base_model = ResNet50(weights='imagenet',
                       include_top=False,
                       input_shape=(HEIGHT, WIDTH, 3))
 
-TRAIN_DIR = "Data/kaggle/input/dermnet/train/"
+TRAIN_DIR = "./Data/dermnet/train/"
 HEIGHT = 300
 WIDTH = 300
 BATCH_SIZE = 8
@@ -58,7 +58,7 @@ test_datagen =  ImageDataGenerator(
     )
 
 validation_generator = test_datagen.flow_from_directory(
-        '/kaggle/input/dermnet/test/',
+        './Data/dermnet/test/',
         target_size=(300, 300),
         batch_size=BATCH_SIZE)
 
@@ -80,7 +80,7 @@ def build_finetune_model(base_model, dropout, fc_layers, num_classes):
 
     return finetune_model
 
-class_list = os.listdir("Data/kaggle/input/dermnet/train/")
+class_list = os.listdir("./Data/dermnet/train/")
 FC_LAYERS = [1024, 1024]
 dropout = 0.5
 
