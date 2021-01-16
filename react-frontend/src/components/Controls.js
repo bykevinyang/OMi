@@ -6,17 +6,22 @@ import Search from './Search';
 
 import Sym from './Sym';
 
+import Disease from './Disease';
+
+import Ask from './Ask';
+
 
 
 class Controls extends React.Component{
 
     state = {
         isLoaded: false,
-        symptomBranch: ["Headache", "Productive Cough", "Clammy Skin", "Throat Sore"],
+        symptomBranch: ["Headache", "Cough", "Clammy Skin", "Throat Sore"],
         searchItems: [],
-        control: 0
-
-        
+        control: 0,
+        diseased: false,
+        dname: "unset",
+        ddesc: "unset"
     }
 
     componentDidMount() {  
@@ -34,7 +39,7 @@ class Controls extends React.Component{
             .then(res => res.json())
                 .then(
                     (result) => {
-                         this.setState({symptomBranch: result.Symptom});
+                         this.setState({symptomBranch: result.data});
                     }
                 )  
 
@@ -49,17 +54,24 @@ class Controls extends React.Component{
             display.push(this.state.symptomBranch[i]);
             //console.log("render log: " + display[i]);
         }
-        
-        //let r = <Search found = {this.searchFound} items = {this.state.searchItems} />;
-        //if (this.state.control === 1){
+        let a = <section> </section>;
+        let r = <Disease name = {this.state.dname} desc = {this.state.ddesc} />
+        if (this.state.diseased == false) {
+
+            a = <Ask />;
+            r = 
+
+                display.map(s => (
+                <Sym click = {this.remove} type = {s} key = {s} />
+
+                
+            ));
+        }
         
 
         return <div>
-            
-            {display.map(s => (
-            <Sym click = {this.remove} type = {s} key = {s} />
-            
-        ))}
+            {a}
+            {r}
 
         </div>;
 
@@ -69,16 +81,17 @@ class Controls extends React.Component{
 
         type = type.replace(" ", "%20");
 
-        let temp = ["error 2"];
+        let temp = ["", "", "", ""];
         console.log(" --- " + type);
         fetch("http://localhost:8080/disease/"+type.toLowerCase())
             .then(res => res.json())
                 .then(
                     (result) => {
-                            console.log(result.Disease);
-                            if (result.Disease != undefined){
-                                temp = ["Found disease! " + result.Disease];
-                            } else temp =  [...result.Symptom];
+                            console.log("Disease data val: " + result.data.disease);
+                            if (result.data.disease != undefined){
+                                temp = "";
+                                this.setState({diseased: true, dname: result.data.disease, ddesc: result.data.description});
+                            } else temp =  [...result.data];
                     }
                 )   
             
