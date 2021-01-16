@@ -21,7 +21,7 @@ def index():
 @app.route('/disease/<symptom>')
 def update_data(symptom):
     symptoms_list.append(symptom.lower())
-    print(symptoms_list)
+
     current_symptoms = find_disease(disease_data, symptoms_list)
     if current_symptoms[1]:
         return {'data' : current_symptoms[0]}

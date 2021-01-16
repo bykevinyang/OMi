@@ -156,11 +156,11 @@ def find_disease(data, symptoms_):
 
         tmp_sym.pop(0)
         tmp_sym2.pop(0)
-        
+
         if tmp_sym == tmp_sym2:
 
             disease_name_1 = diseases[0]['disease'].title()
-            disease_name2 = diseases[1]['disease'].title()
+            disease_name_2 = diseases[1]['disease'].title()
             wiki_info_1 = search_wiki(disease_name_1)
             wiki_info_2 = search_wiki(disease_name_2)
             disease_info_1 = {'disease' : disease_name_1, 'description' : wiki_info_1[0], 'url' : wiki_info_1[1]}
@@ -186,42 +186,3 @@ def find_disease(data, symptoms_):
                         'url' : wiki_info[1]
         }
         return disease_info, True
-
-
-def grabTreatment(disease):
-
-  symptoms = "OMi cannot find any symptoms"
-  medication = 'OMi cannot find a treatment'
-
-  try:
-    #so = wptools.page(str(disease) + '(disease)').get_parse()
-    so = wptools.page(str(disease)).get_parse()
-    infobox = so.data['infobox']
-  
-  except:
-    return (symptoms, medication)
-
-  if 'symptoms' in infobox:
-    symptoms = infobox['symptoms']
-    symptoms = symptoms.replace('[', '')
-    symptoms = symptoms.replace(']', '')
-
-  if 'medication' in infobox:
-    medication = infobox['medication']
-    medication = medication.replace('[', '')
-    medication = medication.replace(']', '')
-
-    return (symptoms, medication)
-    
-  elif 'treatment' in infobox:
-    medication = infobox['treatment']
-    medication = medication.replace('[', '')
-    medication = medication.replace(']', '')
-
-    return (symptoms, medication)
-
-  else:
-    return (symptoms, medication)
-
-
-

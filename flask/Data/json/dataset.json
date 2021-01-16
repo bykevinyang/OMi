@@ -2111,23 +2111,6 @@
         "21": "cough"
     },
     {
-        "disease": "hiv infections",
-        "0": "night sweat",
-        "1": "spontaneous rupture of membranes",
-        "2": "cough",
-        "3": "",
-        "4": "decreased body weight",
-        "5": "chill",
-        "6": "diarrhea",
-        "7": "pleuritic pain",
-        "8": "patient non compliance",
-        "9": "tachypnea",
-        "10": "productive cough",
-        "11": "muscle hypotonia",
-        "12": "hypotonic",
-        "13": "feeling suicidal"
-    },
-    {
         "disease": "benign prostatic hypertrophy",
         "0": "cachexia",
         "1": "blackout",
