@@ -2,38 +2,23 @@ import os
 from flask import Flask
 from flask import render_template, url_for
 
-from lib.process_data import get_diseases, get_symptoms
+from lib.process_data import get_diseases, find_disease_helper, find_disease
 
 
 app = Flask(__name__)
 
-######################################################################
-@app.context_processor
-def override_url_for():
-    return dict(url_for=dated_url_for)
+disease_data = find_disease_helper()
+symptoms_ = []
 
-def dated_url_for(endpoint, **values):
-    if endpoint == 'static':
-        filename = values.get('filename', None)
-        if filename:
-            file_path = os.path.join(app.root_path,
-                                 endpoint, filename)
-            values['q'] = int(os.stat(file_path).st_mtime)
-    return url_for(endpoint, **values)
-######################################################################
-
-# app route to get a dict of all diseases
-@app.route('/diseases')
-def diseases():
-    diseases_ = get_diseases()
-    return {'diseases' : diseases_}
-
-# app route to get a dict of all symptoms
-@app.route('/symptoms')
-def symptoms():
-    symptoms_ = get_symptoms()
-
-    return {'symptoms' : symptoms_}
+# Update symptom and disease.
+@app.route('/disease/<symptom>')
+def update_data(symptom):
+    symptoms_.append(symptom.lower())
+    current_symptoms = find_disease(disease_data, symptoms_)
+    if current_symptoms[1]:
+        return {'Disease' : current_symptoms[0]}
+    else:
+        return{'Symptom' : current_symptoms[0]}
 
 if __name__ == '__main__':
     app.run(debug=True)

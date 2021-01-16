@@ -2,8 +2,16 @@ import os
 import csv
 import json
 
+from pprint import pprint
+
 csvPath = 'Data/csv'
 jsonPath = 'Data/json'
+
+
+def find_disease_helper():
+    with open(f'{jsonPath}/dataset.json') as jsonFile:
+        data = json.load(jsonFile)
+    return data
 
 # Converts the csv data into json format to make it easier to use.
 def convert_csv_to_json():
@@ -15,27 +23,6 @@ def convert_csv_to_json():
 
     with open(f'{jsonPath}/dataset.json', 'w') as jsonFile:
         json.dump(data, jsonFile, indent=4)
-
-# Returns a list of all the symptoms
-def get_symptoms():
-    if not os.path.exists(f'{jsonPath}/dataset.json'):
-        convert_csv_to_json()
-    else:
-        pass
-
-    symptoms = []
-    
-    with open(f'{jsonPath}/dataset.json') as jsonFile:
-        data = json.load(jsonFile)
-        for i in data:
-            for x in i:
-                if x == 'disease' or x == '':
-                    pass
-                else:
-                    symptoms.append(i[x].title())
-        symptoms = list(dict.fromkeys(symptoms))
-
-    return symptoms
 
 
 
@@ -50,10 +37,56 @@ def get_diseases():
 
     with open(f'{jsonPath}/dataset.json') as jsonFile:
         data = json.load(jsonFile)
-        for i in data:
-            diseases.append(i['disease'])
-
-    with open('data.json', 'w') as f:
-        json.dump(list(diseases), f, indent=4)
+        for r in data:
+            diseases.append(r['disease'].title())
 
     return diseases
+
+
+
+# Algorithm to find the disease
+def find_disease(data, symptoms_):
+    if not os.path.exists(f'{jsonPath}/dataset.json'):
+        convert_csv_to_json()
+    else:
+        pass
+    diseases = []
+    diseases_ = []
+    for r in data:
+        for i in r:
+            if i == 'disease' or i == '':
+                pass
+            else:
+                if symptoms_[0] == r[i]:
+                    diseases.append(r)
+
+    if len(diseases) != 1:
+        for r in diseases:
+            for i in r:
+                if i == 'disease' or i == '':
+                    pass
+                else:
+                    if symptoms_[-1] == r[i]:
+                        diseases_.append(r)
+        diseases = diseases_
+
+
+        with open(f'data.json', 'w') as jsonFile:
+            json.dump(diseases, jsonFile, indent=4)
+
+        symptoms = []
+        for r in diseases:
+            for i in r:
+                if i == 'disease' or i == '':
+                    pass
+                else:
+                    symptoms.append(r[i].title())
+        symptoms = list(dict.fromkeys(symptoms))
+
+        if len(diseases) != 1:
+            return symptoms, False
+        else:
+            return diseases[0]['disease'].title(), True
+
+    else:
+        return diseases
