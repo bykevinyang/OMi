@@ -16,7 +16,7 @@ class Controls extends React.Component{
 
     state = {
         isLoaded: false,
-        symptomBranch: ["Headache", "Cough", "Clammy Skin", "Throat Sore"],
+        symptomBranch: ["Headache", "Unproductive Cough", "Clammy Skin", "Throat Sore"],
         searchItems: [],
         control: 0,
         diseased: false,
@@ -60,8 +60,10 @@ class Controls extends React.Component{
             if (this.state.blacklist[0] !== undefined)
             for (let z = 0; z < this.state.blacklist.length; z++) {
    
-                if (this.state.symptomBranch[i].toLowerCase() === this.state.blacklist[z].toLowerCase())
+                if (this.state.symptomBranch[i].toLowerCase() === this.state.blacklist[z].toLowerCase()){
                     inBL = true;
+                    console.log("was hre");
+                }
                 
             }
 
@@ -93,7 +95,6 @@ class Controls extends React.Component{
         return <div>
             {a}
             {r}
-
         </div>;
 
     }
@@ -103,10 +104,11 @@ class Controls extends React.Component{
 
         let pq = [...this.state.blacklist];
         pq.push(type);
-        this.setState({blacklist: pq});
 
         type = type.replace(" ", "%20");
-
+        let ddname = "";
+        let dddesc = "";
+        let ddd = false;
     
         let temp = ["", "", "", ""];
         console.log(" --- " + type);
@@ -117,7 +119,9 @@ class Controls extends React.Component{
                             console.log("Disease data val: " + result.data.disease);
                             if (result.data.disease != undefined){
                                 temp = "";
-                                this.setState({diseased: true, dname: result.data.disease, ddesc: result.data.description});
+                                ddname = result.data.disease;
+                                dddesc =  result.data.description;
+                                ddd = true;
                             } else temp =  [...result.data];
                     }
                 )   
@@ -132,7 +136,7 @@ class Controls extends React.Component{
         }*/
 
         setTimeout(() => {
-            this.setState({symptomBranch: temp});
+            this.setState({symptomBranch: temp, diseased: ddd, dname: ddname, ddesc: dddesc, blacklist: pq});
         }, 900);
 
     }
