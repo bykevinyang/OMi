@@ -88,33 +88,29 @@ def find_disease(data, symptoms_):
                 if symptoms_[0] == r[i]:
                     diseases.append(r)
 
+    for r in diseases:
+        for i in r:
+            if i == 'disease' or i == '':
+                pass
+            else:
+                if symptoms_[-1] == r[i]:
+                    diseases_.append(r)
+    diseases = diseases_
+
+    with open(f'logs/data.json', 'w') as jsonFile:
+        json.dump(diseases, jsonFile, indent=4)
+
+    symptoms = []
+    for r in diseases:
+        for i in r:
+            if i == 'disease' or i == '':
+                pass
+            else:
+                symptoms.append(r[i].title())
+    symptoms = list(dict.fromkeys(symptoms))
+
     if len(diseases) != 1:
-        for r in diseases:
-            for i in r:
-                if i == 'disease' or i == '':
-                    pass
-                else:
-                    if symptoms_[-1] == r[i]:
-                        diseases_.append(r)
-        diseases = diseases_
-
-
-        with open(f'data.json', 'w') as jsonFile:
-            json.dump(diseases, jsonFile, indent=4)
-
-        symptoms = []
-        for r in diseases:
-            for i in r:
-                if i == 'disease' or i == '':
-                    pass
-                else:
-                    symptoms.append(r[i].title())
-        symptoms = list(dict.fromkeys(symptoms))
-
-        if len(diseases) != 1:
-            return symptoms, False
-        else:
-            return diseases[0]['disease'].title(), True
-
+        return symptoms, False
     else:
-        return diseases
+        return diseases[0]['disease'].title(), True
+        os.remove(f'{jsonFile}/dataset.json')

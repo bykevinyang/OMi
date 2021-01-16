@@ -8,7 +8,7 @@ from lib.process_data import get_diseases, find_disease_helper, find_disease, au
 app = Flask(__name__)
 
 disease_data = find_disease_helper()
-symptoms_ = []
+symptoms_list = []
 
 @app.route('/')
 def index():
@@ -18,10 +18,12 @@ def index():
 # Update symptom and disease.
 @app.route('/disease/<symptom>')
 def update_data(symptom):
-    symptoms_.append(symptom.lower())
-    current_symptoms = find_disease(disease_data, symptoms_)
+    symptoms_list.append(symptom.lower())
+    print(symptoms_list)
+    current_symptoms = find_disease(disease_data, symptoms_list)
     if current_symptoms[1]:
         return {'Disease' : current_symptoms[0]}
+
     else:
         return{'Symptom' : current_symptoms[0]}
 
@@ -30,6 +32,11 @@ def autocomplete():
     autocomplete_data = autocomplete_symptoms
     return {'Symptoms' : autocomplete_data()}
 
+@app.route('/clear')
+def clear():
+    global symptoms_list
+    symptoms_list = []
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
