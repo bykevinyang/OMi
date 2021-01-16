@@ -1,6 +1,8 @@
 import os
+
 from flask import Flask
 from flask import render_template, url_for
+
 
 from lib.process_data import get_diseases, find_disease_helper, find_disease, autocomplete_symptoms
 
@@ -22,10 +24,10 @@ def update_data(symptom):
     print(symptoms_list)
     current_symptoms = find_disease(disease_data, symptoms_list)
     if current_symptoms[1]:
-        return {'Disease' : current_symptoms[0]}
+        return {'data' : current_symptoms[0]}
 
     else:
-        return{'Symptom' : current_symptoms[0]}
+        return{'data' : current_symptoms[0]}
 
 @app.route('/autocomplete')
 def autocomplete():
