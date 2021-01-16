@@ -58,10 +58,13 @@ class Sym extends React.Component {
 
     render (){
 
-        let t = this.state.type.toLowerCase();
-        
-        
+        console.log(this.state.type);
         let x = "";
+        if (this.state.type != undefined){
+        let t = this.state.type.replace(" ", "%20").toLowerCase();
+        
+        
+        
         if (t.includes("head")){
              x = head;
         }
@@ -75,6 +78,12 @@ class Sym extends React.Component {
             x = cough;
        }
         else x = head;
+
+     } else {
+
+
+
+         }
 
 
         return <span>

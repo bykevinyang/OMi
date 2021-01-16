@@ -67,16 +67,18 @@ class Controls extends React.Component{
 
     remove = (type) => {
 
+        type = type.replace(" ", "%20");
+
         let temp = ["error 2"];
         console.log(" --- " + type);
         fetch("http://localhost:8080/disease/"+type.toLowerCase())
             .then(res => res.json())
                 .then(
                     (result) => {
-                            temp =  [...result.Symptom];
+                            console.log(result.Disease);
                             if (result.Disease != undefined){
-                                temp = ["found disease"];
-                            }
+                                temp = ["Found disease! " + result.Disease];
+                            } else temp =  [...result.Symptom];
                     }
                 )   
             
@@ -92,7 +94,6 @@ class Controls extends React.Component{
         setTimeout(() => {
             this.setState({symptomBranch: temp});
         }, 900);
-        this.forceUpdate();
 
     }
 
