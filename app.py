@@ -25,11 +25,11 @@ def update_data(symptom):
     else:
         return{'Symptom' : current_symptoms[0]}
 
-@app.route('/autocomplete_symptoms')
+@app.route('/autocomplete')
 def autocomplete():
     autocomplete_data = autocomplete_symptoms
     return {'Symptoms' : autocomplete_data()}
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=8080)
