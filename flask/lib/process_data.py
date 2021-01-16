@@ -190,14 +190,19 @@ def find_disease(data, symptoms_):
         }
         return disease_info, True
 
+
 def grabTreatment(disease):
 
   symptoms = "OMi cannot find any symptoms"
   medication = 'OMi cannot find a treatment'
 
-  #so = wptools.page(str(disease) + '(disease)').get_parse()
-  so = wptools.page(str(disease)).get_parse()
-  infobox = so.data['infobox']
+  try:
+    #so = wptools.page(str(disease) + '(disease)').get_parse()
+    so = wptools.page(str(disease)).get_parse()
+    infobox = so.data['infobox']
+  
+  except:
+    return (symptoms, medication)
 
   if 'symptoms' in infobox:
     symptoms = infobox['symptoms']
@@ -209,16 +214,17 @@ def grabTreatment(disease):
     medication = medication.replace('[', '')
     medication = medication.replace(']', '')
 
-    return(symptoms, medication)
+    return (symptoms, medication)
     
   elif 'treatment' in infobox:
     medication = infobox['treatment']
     medication = medication.replace('[', '')
     medication = medication.replace(']', '')
 
-    return(symptoms, medication)
+    return (symptoms, medication)
 
   else:
-    return(symptoms, medication)
+    return (symptoms, medication)
+
 
 
