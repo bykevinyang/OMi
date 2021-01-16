@@ -78,39 +78,81 @@ def find_disease(data, symptoms_):
         convert_csv_to_json()
     else:
         pass
+
+    json_data = []
     diseases = []
-    diseases_ = []
-    for r in data:
-        for i in r:
-            if i == 'disease' or i == '':
-                pass
-            else:
-                if symptoms_[0] == r[i]:
-                    diseases.append(r)
+    tmp_diseases = []
+    symptoms = []
 
-    for r in diseases:
-        for i in r:
-            if i == 'disease' or i == '':
-                pass
-            else:
-                if symptoms_[-1] == r[i]:
-                    diseases_.append(r)
-    diseases = diseases_
+    if len(symptoms_) == 1:
+        for r in data:
+            for i in r:
+                if i == 'disease' or i == '':
+                    pass
+                else:
+                    if symptoms_[0] == r[i]:
+                        diseases.append(r)
 
+
+            for r in diseases:
+                for i in r:
+                    if i == 'disease' or i == '':
+                        pass
+                    else:
+                        symptoms.append(r[i].title())
+
+        symptoms = list(dict.fromkeys(symptoms))
+        with open(f'logs/data.json', 'w') as jsonFile:
+            json.dump(diseases, jsonFile, indent=4)
+        return symptoms, False
+
+    else:
+        with open(f'logs/data.json', 'r') as f:
+            diseases = json.load(f)
+
+        for r in diseases:
+            for i in r:
+                if i == 'disease' or i == '':
+                    pass
+                else:
+                    if symptoms_[-1] == r[i]:
+                        tmp_diseases.append(r)
+
+        diseases = tmp_diseases
+        with open(f'logs/data.json', 'w') as jsonFile:
+            json.dump(diseases, jsonFile, indent=4)
+
+        for r in diseases:
+            for i in r:
+                if i == 'disease' or i == '':
+                    pass
+                else:
+                    symptoms.append(r[i].title())
+
+    symptoms = list(dict.fromkeys(symptoms))
     with open(f'logs/data.json', 'w') as jsonFile:
         json.dump(diseases, jsonFile, indent=4)
 
-    symptoms = []
-    for r in diseases:
-        for i in r:
+    print(len(diseases))
+    if len(diseases) == 2:
+        tmp_sym = []
+        tmp_sym2 = []
+        for i in diseases[0]:
             if i == 'disease' or i == '':
                 pass
             else:
-                symptoms.append(r[i].title())
-    symptoms = list(dict.fromkeys(symptoms))
-
-    if len(diseases) != 1:
+                tmp_sym.append(r[i].title())
+        for i in diseases[1]:
+            if i == 'disease' or i == '':
+                pass
+            else:
+                tmp_sym2.append(r[i].title())
+        if tmp_sym == tmp_sym2:
+            return [diseases[0]['disease'].title(), diseases[1]['disease'].title()]
+        else:
+            return symptoms, False
+    elif len(diseases) != 1:
         return symptoms, False
     else:
+    #    os.remove('logs/data.json')
         return diseases[0]['disease'].title(), True
-        os.remove(f'{jsonFile}/dataset.json')
