@@ -12,7 +12,7 @@ class Controls extends React.Component{
 
     state = {
         isLoaded: false,
-        symptomBranch: ["Headache", "Cough", "Fatigue", "Redness"],
+        symptomBranch: ["Headache", "Productive Cough", "Clammy Skin", "Throat Sore"],
         searchItems: [],
         control: 0
 
@@ -49,25 +49,17 @@ class Controls extends React.Component{
             display.push(this.state.symptomBranch[i]);
             //console.log("render log: " + display[i]);
         }
-
-        if (display.length === 0) {
-            display.push("null");
-            display.push("null");
-            display.push("null");
-            display.push("null");
-        }
         
-        let r = <Search found = {this.searchFound} items = {this.state.searchItems} />;
-        if (this.state.control === 1){
-            r = display.map(s => (
-                <Sym click = {this.remove} type = {s} />
-                
-            ));
-        }
+        //let r = <Search found = {this.searchFound} items = {this.state.searchItems} />;
+        //if (this.state.control === 1){
+        
 
         return <div>
             
-            {r}
+            {display.map(s => (
+            <Sym click = {this.remove} type = {s} key = {s} />
+            
+        ))}
 
         </div>;
 
@@ -75,8 +67,9 @@ class Controls extends React.Component{
 
     remove = (type) => {
 
-        let temp = ["error1"];
-        fetch("http://localhost:8080/disease/"+type)
+        let temp = ["error 2"];
+        console.log(" --- " + type);
+        fetch("http://localhost:8080/disease/"+type.toLowerCase())
             .then(res => res.json())
                 .then(
                     (result) => {
@@ -99,6 +92,7 @@ class Controls extends React.Component{
         setTimeout(() => {
             this.setState({symptomBranch: temp});
         }, 900);
+        this.forceUpdate();
 
     }
 

@@ -8,9 +8,9 @@ const AskWrap = styled.section`
         color: white;
         display: block;
         margin: auto;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        font-size: 40px;
+        margin-top: 100px;
+        margin-bottom: 70px;
+        font-size: 60px;
     `;
 
 class Ask extends React.Component {
