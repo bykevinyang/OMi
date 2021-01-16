@@ -147,13 +147,9 @@ def find_disease(data, symptoms_):
                 pass
             else:
                 tmp_sym2.append(r[i].title())
-
-        print('-' * 50)
         if tmp_sym == tmp_sym2:
-            print('-' * 60)
             return [diseases[0]['disease'].title(), diseases[1]['disease'].title()]
         else:
-            print('-' * 80)
             return symptoms, False
     elif len(diseases) != 1:
         return symptoms, False
