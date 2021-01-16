@@ -25,6 +25,24 @@ def convert_csv_to_json():
         json.dump(data, jsonFile, indent=4)
 
 
+def autocomplete_symptoms():
+    if not os.path.exists(f'{jsonPath}/dataset.json'):
+        convert_csv_to_json()
+    else:
+        pass
+    with open(f'{jsonPath}/dataset.json') as jsonFile:
+        data = json.load(jsonFile)
+    symptoms = []
+    for r in diseases:
+        for i in r:
+            if i == 'disease' or i == '':
+                pass
+            else:
+                symptoms.append(r[i].title())
+    symptoms = list(dict.fromkeys(symptoms))
+
+    return symptoms
+
 
 # Returns a list of all the diseases
 def get_diseases():
