@@ -21,7 +21,8 @@ class Controls extends React.Component{
         control: 0,
         diseased: false,
         dname: "unset",
-        ddesc: "unset"
+        ddesc: "unset",
+        blacklist: []
     }
 
     componentDidMount() {  
@@ -50,9 +51,29 @@ class Controls extends React.Component{
     render() {
 
         let display = [];
-        for (let i = 0; i < 4; i++) {
+        let c = 0;
+        for (let i = 0; i < this.state.symptomBranch.length; i++) {
+
+            
+
+            let inBL = false;
+            if (this.state.blacklist[0] !== undefined)
+            for (let z = 0; z < this.state.blacklist.length; z++) {
+   
+                if (this.state.symptomBranch[i].toLowerCase() === this.state.blacklist[z].toLowerCase())
+                    inBL = true;
+                
+            }
+
+            if (inBL) continue;
+
+            c++;
             display.push(this.state.symptomBranch[i]);
+            if (c == 4) break;
+
             //console.log("render log: " + display[i]);
+
+
         }
         let a = <section> </section>;
         let r = <Disease name = {this.state.dname} desc = {this.state.ddesc} />
@@ -79,8 +100,14 @@ class Controls extends React.Component{
 
     remove = (type) => {
 
+
+        let pq = [...this.state.blacklist];
+        pq.push(type);
+        this.setState({blacklist: pq});
+
         type = type.replace(" ", "%20");
 
+    
         let temp = ["", "", "", ""];
         console.log(" --- " + type);
         fetch("http://localhost:8080/disease/"+type.toLowerCase())
