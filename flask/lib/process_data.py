@@ -144,22 +144,19 @@ def find_disease(data, symptoms_):
     with open(f'logs/data.json', 'w') as jsonFile:
         json.dump(diseases, jsonFile, indent=4)
 
-    print(len(diseases))
     if len(diseases) == 2:
         tmp_sym = []
         tmp_sym2 = []
+
         for i in diseases[0]:
-            print('-' * 50)
-            print(i)
-            if i == 'disease' or i == '':
-                pass
-            else:
-                tmp_sym.append(diseases[0][i].title())
+            tmp_sym.append(diseases[0][i].title())
+
         for i in diseases[1]:
-            if i == 'disease' or i == '':
-                pass
-            else:
-                tmp_sym2.append(diseases[0][i].title())
+            tmp_sym2.append(diseases[1][i].title())
+
+        tmp_sym.pop(0)
+        tmp_sym2.pop(0)
+        
         if tmp_sym == tmp_sym2:
 
             disease_name_1 = diseases[0]['disease'].title()
