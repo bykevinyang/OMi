@@ -42,6 +42,37 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-
+    <script type="text/javascript">
+    window.addEventListener("load", function() {
+    // CHROME
+    if (navigator.userAgent.indexOf("Chrome") != -1 ) {
+      console.log("Google Chrome");
+    }
+    // FIREFOX
+    else if (navigator.userAgent.indexOf("Firefox") != -1 ) {
+      alert("OMi cannot run on Firefox, Please switch to Chrome or Microsoft Edge.");
+    }
+    // INTERNET EXPLORER
+    else if (navigator.userAgent.indexOf("MSIE") != -1 ) {
+      alert("OMi cannot run on MSIE, Please switch to Chrome or Microsoft Edge.");
+    }
+    // EDGE
+    else if (navigator.userAgent.indexOf("Edge") != -1 ) {
+      console.log("Internet Exploder");
+    }
+    // SAFARI
+    else if (navigator.userAgent.indexOf("Safari") != -1 ) {
+      alert("OMi cannot run on Safari, Please switch to Chrome or Microsoft Edge.");
+    }
+    // OPERA
+    else if (navigator.userAgent.indexOf("Opera") != -1 ) {
+      alert("OMi cannot run on Opera, Please switch to Chrome or Microsoft Edge.");
+    }
+    // OTHERS
+    else {
+      console.log("Others");
+    }
+  });
+    </script>
   </body>
 </html>
