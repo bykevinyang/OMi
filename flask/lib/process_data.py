@@ -99,8 +99,13 @@ def search_wiki(name):
         description = wikipedia.summary(f'{name} (disease)', sentences = 5, auto_suggest=False)
         url = (wikipedia.page(f'{name} (disease)')).url
     except:
-        description = "Sorry, OMi couldn't find a description for this disease."
-        url = "Wikipedia page not available."
+        try:
+            description = wikipedia.summary(f'{name}', sentences = 5, auto_suggest=False)
+            url = (wikipedia.page(f'{name} (disease)')).url
+        except :
+            description = "Sorry, OMi couldn't find a description for this disease."
+            url = "Wikipedia page not available."
+
 
     return description, url
 

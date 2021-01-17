@@ -1,2 +1,0 @@
-For Skin Disease Classification, we use the following dataset: 
-https://www.kaggle.com/shubhamgoel27/dermnet
