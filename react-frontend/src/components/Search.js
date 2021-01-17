@@ -4,7 +4,10 @@ import styled from 'styled-components';
 
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 
-
+const OD = styled.div`
+  max-width: 50%;
+  margin: 0 auto;
+`;
 
 function Search(props) {   
 
@@ -30,15 +33,21 @@ function Search(props) {
                 
 
         return (
-         <div>
+         <OD>
             <ReactSearchAutocomplete
             items={props.items}
             onSearch={handleOnSearch}
             onSelect={handleOnSelect}
             onFocus={handleOnFocus}
+            showIcon={false}
+            maxResults={5}
+            placeholder="Search..."
+            
+            styling={{borderRadius: "5px", fontSize: "22px", fontWeight: "bold", lineHeight: "1.2"}}
+
             autoFocus
           />
-        </div>
+        </OD>
         )
 
     }

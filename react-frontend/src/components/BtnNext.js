@@ -11,7 +11,7 @@ border: none;
 border-radius: 20px;
 width: 100px;
 margin: 20px;
-margin-top:50px;
+margin-top:30px;
 height: 50px;
 
 &:hover {

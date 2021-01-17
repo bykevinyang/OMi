@@ -11,5 +11,5 @@ body > #root > div {
 }
 
 body {
-  background: #121212;
+  background-image: linear-gradient(to right, #d38312, #a83279);
 }

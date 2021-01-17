@@ -15,7 +15,7 @@ import BtnNext from './BtnNext';
 const OuterWrap = styled.div`
 
     height: 100%;
-    background: #121212;
+    background-image: linear-gradient(to right, #D38312 , #A83279);
 
 `;
 
@@ -98,11 +98,13 @@ class Controls extends React.Component{
 
         }
         let a = <section> </section>;
+        let g = <section> </section>;
         let e = <section> </section>;
         let r = <Disease name = {this.state.dname} desc = {this.state.ddesc} />
 
         if (this.state.diseased === false) {
 
+            
             a = <Ask />;
             r = 
 
@@ -112,15 +114,22 @@ class Controls extends React.Component{
                 
             ));
             e = <BtnNext click = {this.nextSet}/>
+            g = <Search 
+            found = {this.remove} 
+            items = {this.state.searchItems}
+            ></Search>; 
         } else {
             console.log("##" + this.state.ddesc);
         }
 
-        if (this.state.firstTime) e = <Search found = {this.remove} items = {this.state.searchItems}></Search>;
+        if (this.state.firstTime){ 
+            
+        }
         
 
         return <OuterWrap>
             {a}
+            {g}
             {r}
             <div>{e}</div>
         </OuterWrap>;

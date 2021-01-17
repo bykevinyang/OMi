@@ -8,8 +8,8 @@ const AskWrap = styled.section`
         color: white;
         display: block;
         margin: auto;
-        margin-top: 100px;
-        margin-bottom: 70px;
+        margin-top: 50px;
+        margin-bottom: 30px;
         font-size: 60px;
     `;
 

@@ -21,10 +21,6 @@ function App() {
         <Controls />
       </PageWrap>
 
-      <PageWrap>
-        <Controls />
-      </PageWrap>
-
       <Top></Top>
 
     </div>
