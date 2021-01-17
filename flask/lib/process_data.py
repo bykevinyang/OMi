@@ -167,9 +167,10 @@ def find_disease(data, symptoms_):
             disease_info_2 = {'disease' : disease_name_2, 'description' : wiki_info_2[0], 'url' : wiki_info_2[1]}
             disease_info = {'disease' : [disease_info_1, disease_info_2]}
 
-            return disease_info, True
+            return disease_info, True, []
         else:
-            return symptoms, False
+            symptoms_info = {'symptoms' : symptoms}
+            return symptoms_info, False
 
 
     elif len(diseases) != 1:
@@ -185,4 +186,4 @@ def find_disease(data, symptoms_):
                         'description' : wiki_info[0],
                         'url' : wiki_info[1]
         }
-        return disease_info, True
+        return disease_info, True, []
