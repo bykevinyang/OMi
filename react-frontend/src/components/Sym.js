@@ -4,6 +4,7 @@ import cough from "../img/cough.png";
 import throat from "../img/throat.png";
 import rash from "../img/rash.png";
 import styled from 'styled-components';
+import ToControl from './ToControl';
 
 const Sym1 = styled.button`
 
@@ -42,7 +43,7 @@ const Sym1 = styled.button`
 
 `;
 const Text1 = styled.p`
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
 `;
 
@@ -92,18 +93,29 @@ class Sym extends React.Component {
 
          }
 
+         let ret = <Sym1 onClick = {() => this.props.click(this.state.type)}> 
+         <Wrapp>
+             <img src={x}></img>
+         </Wrapp>
+         <Wrapp2>
+             <Text1>{this.props.type}</Text1>
+         </Wrapp2>
+         
+             
+         </Sym1>;
+        
+         if (this.state.type == "") ret = <ToControl></ToControl>;
 
-        return <Sym1 onClick = {() => this.props.click(this.state.type)}> 
-                <Wrapp>
-                    <img src={x}></img>
-                </Wrapp>
-                <Wrapp2>
-                    <Text1>{this.props.type}</Text1>
-                </Wrapp2>
-                
-                    
-                </Sym1>;
+        return ret;
 
+    }
+
+    scroll = () => {
+        window.scrollTo({
+            top: window.innerHeight,
+            left: 0,
+            behavior: 'smooth'
+        });
     }
 
 }

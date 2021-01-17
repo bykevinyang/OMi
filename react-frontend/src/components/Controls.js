@@ -15,7 +15,7 @@ import BtnNext from './BtnNext';
 const OuterWrap = styled.div`
 
     height: 100%;
-    background-image: linear-gradient(to right, #D38312 , #A83279);
+    background: #0d1117;
 
 `;
 
@@ -171,11 +171,21 @@ class Controls extends React.Component{
                     (result) => {
                             console.log("Disease data val: " + result.data.disease);
                             if (result.data.disease != undefined){
+                                
+                                if (result.data.disease[0].disease != undefined){
+                                    temp = "";
+                                    console.log("OAISDHIAHDSA");
+                                    ddname = result.data.disease[0].disease;
+                                    dddesc =  result.data.disease[0].description;
+                                    ddd = true;
+                                } else {
+
                                 temp = "";
                                 console.log("OAISDHIAHDSA");
                                 ddname = result.data.disease;
                                 dddesc =  result.data.description;
                                 ddd = true;
+                                }
 
                                 //this.setState({final: true});
                                 this.setState({diseased: ddd, dname: ddname, ddesc: dddesc, blacklist: pq});

@@ -53,8 +53,31 @@ const SpRight = styled.span`
 class Bar extends React.Component {
 
     
-
+    scroll3 = () => {
+        window.scrollTo({
+            top: window.innerHeight*3,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
+    scroll4 = () => {
+        window.scrollTo({
+            top: window.innerHeight*4,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
+    scroll5 = () => {
+        window.scrollTo({
+            top: window.innerHeight*5,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
     
+    al = () => {
+        alert("Coming soon!");
+    }
 
     render(){
 
@@ -64,9 +87,13 @@ class Bar extends React.Component {
 
             <SpLeft>OMi</SpLeft>
 
-            <Sp>About</Sp>
-            <Sp>Doctors</Sp>
-            <Sp>Pharmacy</Sp>
+            <Sp onClick = {this.scroll4}>About</Sp>
+            <Sp onClick = {this.al}>Doctors</Sp>
+            <Sp type="button"
+            onClick={(e) => {
+                e.preventDefault();
+                window.location.href='https://github.com/kevin200617/OMi';
+            }}>GitHub</Sp>
 
             <SpRight></SpRight>
 

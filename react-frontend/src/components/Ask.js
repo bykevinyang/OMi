@@ -9,7 +9,8 @@ const AskWrap = styled.section`
         display: block;
         margin: auto;
         margin-top: 50px;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
+        font-weight: bold;
         font-size: 60px;
     `;
 
@@ -17,7 +18,7 @@ class Ask extends React.Component {
 
 
     state = {
-        text: "Tell me about your symptoms!",
+        text: "Tell us about your symptoms!",
     }
 
 
