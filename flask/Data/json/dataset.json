@@ -1,5 +1,19 @@
 [
     {
+        "disease": "COVID-19",
+        "0": "fever",
+        "1": "cough",
+        "2": "Shortness of breath",
+        "3":"fatigue",
+        "4":"muscle aches",
+        "5":"headaches",
+        "6":"lost of taste",
+        "7":"sore throat",
+        "8":"congestion",
+        "9":"nausea",
+        "10":"diarrhea"
+    },
+    {
         "disease": "influenza",
         "0": "fever",
         "1": "pleuritic pain",
@@ -1083,7 +1097,7 @@
         "0": "night sweat",
         "1": "spontaneous rupture of membranes",
         "2": "cough",
-        "3": "",
+        "3": "feeling suicidal",
         "4": "decreased body weight",
         "5": "chill",
         "6": "diarrhea",
@@ -1092,8 +1106,7 @@
         "9": "tachypnea",
         "10": "productive cough",
         "11": "muscle hypotonia",
-        "12": "hypotonic",
-        "13": "feeling suicidal"
+        "12": "hypotonic"
     },
     {
         "disease": "pneumothorax",
@@ -2149,7 +2162,7 @@
         "0": "night sweat",
         "1": "spontaneous rupture of membranes",
         "2": "cough",
-        "3": "",
+        "3": "feeling suicidal",
         "4": "decreased body weight",
         "5": "chill",
         "6": "diarrhea",
@@ -2158,8 +2171,7 @@
         "9": "tachypnea",
         "10": "productive cough",
         "11": "muscle hypotonia",
-        "12": "hypotonic",
-        "13": "feeling suicidal"
+        "12": "hypotonic"
     },
     {
         "disease": "bacteremia",
