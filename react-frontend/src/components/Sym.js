@@ -45,7 +45,12 @@ const Text1 = styled.p`
 `;
 
 const Wrapp = styled.div`
-
+    margin-top: 50px;
+`;
+const Wrapp2 = styled.div`
+    margin-top: 50px;
+    max-height:150px;
+    height: 100px;
 `;
 
 class Sym extends React.Component {
@@ -90,9 +95,9 @@ class Sym extends React.Component {
                 <Wrapp>
                     <img src={x}></img>
                 </Wrapp>
-                <Wrapp>
+                <Wrapp2>
                     <Text1>{this.props.type}</Text1>
-                </Wrapp>
+                </Wrapp2>
                 
                     
                 </Sym1>;

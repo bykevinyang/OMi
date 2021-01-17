@@ -3,8 +3,7 @@ body > #root > div {
 }
 
 * {
-  font-family: "Roboto", sans-serif;
-  overflow-y: hidden;
+  font-family: Calibre, sans-serif;
 }
 
 .App {

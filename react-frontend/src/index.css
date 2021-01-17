@@ -5,6 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  @font-face {
+    font-family: "Calibre";
+    src: local("Calibre"), url(./fonts/Calibre.otf) format("truetype");
+  }
 }
 
 code {

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Wr = styled.div`
 
     height: 100%;
-    background: white;
+    background: black;
 
 `;
 

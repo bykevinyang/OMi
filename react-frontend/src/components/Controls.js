@@ -10,6 +10,7 @@ import Disease from './Disease';
 
 import Ask from './Ask';
 
+import BtnNext from './BtnNext';
 
 const OuterWrap = styled.div`
 
@@ -24,6 +25,8 @@ class Controls extends React.Component{
     state = {
         isLoaded: false,
         symptomBranch: ["Headache", "Cough", "Clammy Skin", "Throat Sore"],
+        firstTime: true,
+        firstTime2: true,
         searchItems: [],
         control: 0,
         diseased: false,
@@ -60,9 +63,18 @@ class Controls extends React.Component{
 
         let display = [];
         let c = 0;
-        for (let i = 0; i < this.state.symptomBranch.length; i++) {
+        //for (let i = 0; i < this.state.symptomBranch.length; i++) {
+        let keepgoing = true;
 
+        if (this.state.firstTime){
+            display = [...this.state.symptomBranch];
+        } else
+        while (keepgoing){
             
+            let i = Math.floor(Math.random() * this.state.symptomBranch.length);  
+
+
+            //Math.floor(Math.random() * 11);  
 
             let inBL = false;
             if (this.state.blacklist[0] !== undefined)
@@ -79,13 +91,14 @@ class Controls extends React.Component{
 
             c++;
             display.push(this.state.symptomBranch[i]);
-            if (c == 4) break;
+            if (display.length == 4) keepgoing = false;
 
             //console.log("render log: " + display[i]);
 
 
         }
         let a = <section> </section>;
+        let e = <section> </section>;
         let r = <Disease name = {this.state.dname} desc = {this.state.ddesc} />
         if (this.state.diseased === false) {
 
@@ -97,6 +110,7 @@ class Controls extends React.Component{
 
                 
             ));
+            e = <BtnNext click = {this.nextSet}/>
         } else {
             console.log("##" + this.state.ddesc);
         }
@@ -105,7 +119,24 @@ class Controls extends React.Component{
         return <OuterWrap>
             {a}
             {r}
+            <div>{e}</div>
         </OuterWrap>;
+
+    }
+
+    nextSet = () => {
+
+        if (this.state.firstTime2){
+        fetch("http://localhost:8080/symptoms")
+          .then(res => res.json())
+              .then(
+                  (result) => {
+                          this.setState({symptomBranch: result.symptoms, firstTime2: false, firstTime: false}); // you are here
+                  }
+              )  
+        } else {
+            this.forceUpdate();
+        }
 
     }
 
@@ -174,7 +205,7 @@ class Controls extends React.Component{
         
         setTimeout(() => {
             console.log("ddd: " + ddd);
-            this.setState({symptomBranch: temp, diseased: ddd, dname: ddname, ddesc: dddesc, blacklist: pq});
+            this.setState({symptomBranch: temp, diseased: ddd, dname: ddname, ddesc: dddesc, blacklist: pq, firstTime: false});
 
         }, 900);
 
