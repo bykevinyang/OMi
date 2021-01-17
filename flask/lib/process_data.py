@@ -54,6 +54,23 @@ def autocomplete_symptoms():
         autocomplete_data.append(tmp_dict)
     return autocomplete_data
 
+def get_symptoms():
+    with open(f'{jsonPath}/dataset.json') as jsonFile:
+        data = json.load(jsonFile)
+
+    tmp_symptoms = []
+
+    for r in data:
+        for i in r:
+            if i == 'disease' or i == '':
+                pass
+            else:
+                tmp_symptoms.append(r[i].title())
+
+    symptoms = {'symptoms' : tmp_symptoms}
+    return symptoms
+
+
 
 # Returns a list of all the diseases
 def get_diseases():

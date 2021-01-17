@@ -4,8 +4,7 @@ from flask import Flask
 from flask import render_template, url_for
 
 
-from lib.process_data import find_disease_helper, find_disease, autocomplete_symptoms
-
+from lib.process_data import find_disease_helper, find_disease, autocomplete_symptoms, get_symptoms
 
 app = Flask(__name__)
 
@@ -36,6 +35,13 @@ def update_data(symptom):
 def autocomplete():
     autocomplete_data = autocomplete_symptoms
     return {'Symptoms' : autocomplete_data()}
+
+
+@app.route('/symptoms')
+def symptoms():
+    symptoms = get_symptoms()
+    return symptoms
+
 
 @app.route('/clear')
 def clear():
