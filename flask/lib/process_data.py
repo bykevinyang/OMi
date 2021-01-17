@@ -44,6 +44,7 @@ def autocomplete_symptoms():
                 symptoms.append(r[i].title())
 
     symptoms = list(dict.fromkeys(symptoms))
+    symptoms = list(set(symptoms))
 
     x = 0
     for i in symptoms:
@@ -52,6 +53,8 @@ def autocomplete_symptoms():
         tmp_dict['name'] = i
         x += 1
         autocomplete_data.append(tmp_dict)
+
+
     return autocomplete_data
 
 def get_symptoms():
@@ -67,6 +70,7 @@ def get_symptoms():
             else:
                 tmp_symptoms.append(r[i].title())
 
+    tmp_symptoms = list(set(tmp_symptoms))
     symptoms = {'symptoms' : tmp_symptoms}
     return symptoms
 
