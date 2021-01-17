@@ -3,6 +3,7 @@ import Bar from './components/Bar';
 import Controls from './components/Controls';
 import Intro from './components/Intro';
 import PageWrap from './components/PageWrap';
+import Top from './components/Top';
 
 function App() {
 
@@ -19,6 +20,12 @@ function App() {
       <PageWrap>
         <Controls />
       </PageWrap>
+
+      <PageWrap>
+        <Controls />
+      </PageWrap>
+
+      <Top></Top>
 
     </div>
   );

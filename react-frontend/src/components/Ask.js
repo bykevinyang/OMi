@@ -20,7 +20,6 @@ class Ask extends React.Component {
         text: "Tell me about your symptoms!",
     }
 
-    
 
     
 

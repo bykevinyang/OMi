@@ -1,14 +1,27 @@
 [
     {
-        "disease": "neuropathy",
-        "0": "numbness",
-        "1": "nausea and vomiting",
-        "2": "awakening early",
-        "3": "hydropneumothorax",
-        "4": "superimposition",
-        "5": "fatigability",
-        "6": "tenesmus",
-        "7": "pain",
-        "8": "slowing of urinary stream"
+        "disease": "suicide attempt",
+        "0": "sleeplessness",
+        "1": "suicidal",
+        "2": "motor retardation",
+        "3": "weepiness",
+        "4": "unable to concentrate",
+        "5": "todd paralysis",
+        "6": "worry",
+        "7": "fatigue",
+        "8": "tremor",
+        "9": "alcoholic withdrawal symptoms",
+        "10": "agitation",
+        "11": "unresponsiveness",
+        "12": "blackout",
+        "13": "withdraw",
+        "14": "difficulty",
+        "15": "irritable mood",
+        "16": "sensory discomfort",
+        "17": "drowsiness",
+        "18": "formication",
+        "19": "unconscious state",
+        "20": "fever",
+        "21": "cough"
     }
 ]

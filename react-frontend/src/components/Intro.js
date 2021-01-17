@@ -45,19 +45,32 @@ const Go = styled.button`
 class Intro extends React.Component {
 
 
+    constructor(){
+        super();
+        this.myRef = React.createRef();
+    }
+
+    scroll = () => {
+        window.scrollTo({
+            top: window.innerHeight,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
+
     render(){
 
         return <section>
-        <OuterDiv>
+        <OuterDiv ref = {this.myRef}>
 
             <Text1>Introducing OMi</Text1>
             <Title>Online Medical Informant</Title>
             <Text1>A service identifying a patients issue</Text1>
-            <Text1>based on their selected symptoms</Text1>
+            <Text1>based on the symptoms that they are experiencing</Text1>
 
         </OuterDiv>
         <Text2>Search, Select, Indentify. It's that easy.</Text2>
-        <Go>Try Now</Go>
+        <Go onClick = {this.scroll}>Try Now</Go>
         </section>
     }
 }

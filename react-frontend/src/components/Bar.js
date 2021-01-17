@@ -52,6 +52,9 @@ const SpRight = styled.span`
 
 class Bar extends React.Component {
 
+    
+
+    
 
     render(){
 
