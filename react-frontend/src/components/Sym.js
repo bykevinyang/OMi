@@ -21,13 +21,10 @@ const Sym1 = styled.button`
     font-size:30px;
     border: none;
     border-radius: 10px;
-    padding: 10px 10px 10px 10px;
-    width: 15%;
-    min-width: 150px;
+    width: 240px;
     margin: 20px;
     margin-top:50px;
-    height: 40%;
-    min-height: 300px;
+    height: 350px;
 
     &:focus {
         outline: none;
@@ -43,12 +40,12 @@ const Sym1 = styled.button`
 
 `;
 const Text1 = styled.p`
-    max-height: 20px;
+    font-size: 18px;
+    font-weight: bold;
 `;
 
-const Wrapp = styled.p`
-    text-align: center;
-    margin-top: 0px;
+const Wrapp = styled.div`
+
 `;
 
 class Sym extends React.Component {
@@ -89,17 +86,16 @@ class Sym extends React.Component {
          }
 
 
-        return <span>
-                <Sym1 onClick = {() => this.props.click(this.state.type)}> 
+        return <Sym1 onClick = {() => this.props.click(this.state.type)}> 
                 <Wrapp>
                     <img src={x}></img>
-                    <br />
-                    <br />
+                </Wrapp>
+                <Wrapp>
                     <Text1>{this.props.type}</Text1>
                 </Wrapp>
+                
                     
-                </Sym1>
-            </span>;
+                </Sym1>;
 
     }
 

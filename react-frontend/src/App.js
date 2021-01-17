@@ -1,5 +1,6 @@
 import './App.css';
 import Controls from './components/Controls';
+import PageWrap from './components/PageWrap';
 
 function App() {
 
@@ -7,8 +8,10 @@ function App() {
 
   return (
     <div className="App">
-      
-      <Controls />
+      <PageWrap>
+        <Controls />
+      </PageWrap>
+
     </div>
   );
 }

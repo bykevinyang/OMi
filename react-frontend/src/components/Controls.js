@@ -11,18 +11,26 @@ import Disease from './Disease';
 import Ask from './Ask';
 
 
+const OuterWrap = styled.div`
+
+    height: 100%;
+    background: #2d2d2e;
+
+`;
+
 
 class Controls extends React.Component{
 
     state = {
         isLoaded: false,
-        symptomBranch: ["Headache", "Unproductive Cough", "Clammy Skin", "Throat Sore"],
+        symptomBranch: ["Headache", "Cough", "Clammy Skin", "Throat Sore"],
         searchItems: [],
         control: 0,
         diseased: false,
         dname: "unset",
         ddesc: "unset",
-        blacklist: []
+        blacklist: [],
+        final: 0
     }
 
     componentDidMount() {  
@@ -79,7 +87,7 @@ class Controls extends React.Component{
         }
         let a = <section> </section>;
         let r = <Disease name = {this.state.dname} desc = {this.state.ddesc} />
-        if (this.state.diseased == false) {
+        if (this.state.diseased === false) {
 
             a = <Ask />;
             r = 
@@ -89,13 +97,15 @@ class Controls extends React.Component{
 
                 
             ));
+        } else {
+            console.log("##" + this.state.ddesc);
         }
         
 
-        return <div>
+        return <OuterWrap>
             {a}
             {r}
-        </div>;
+        </OuterWrap>;
 
     }
 
@@ -119,10 +129,36 @@ class Controls extends React.Component{
                             console.log("Disease data val: " + result.data.disease);
                             if (result.data.disease != undefined){
                                 temp = "";
+                                console.log("OAISDHIAHDSA");
                                 ddname = result.data.disease;
                                 dddesc =  result.data.description;
                                 ddd = true;
-                            } else temp =  [...result.data];
+
+                                //this.setState({final: true});
+                                this.setState({diseased: ddd, dname: ddname, ddesc: dddesc, blacklist: pq});
+
+                            } else {
+
+
+                                temp = [];
+
+                                console.log(result.data);
+
+                                if (result.data.symptoms != undefined) {
+                                    for (let z = 0; z < result.data.symptoms.length; z++) {
+                                    
+                                        temp.push(result.data.symptoms[z]);
+                                    }
+
+                                } else
+                                for (let z = 0; z < result.data.length; z++) {
+                                    
+                                    temp.push(result.data[z]);
+                                }
+
+                                
+
+                            }
                     }
                 )   
             
@@ -135,9 +171,14 @@ class Controls extends React.Component{
             }
         }*/
 
+        
         setTimeout(() => {
+            console.log("ddd: " + ddd);
             this.setState({symptomBranch: temp, diseased: ddd, dname: ddname, ddesc: dddesc, blacklist: pq});
+
         }, 900);
+
+        
 
     }
 
