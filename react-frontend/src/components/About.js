@@ -7,6 +7,7 @@ import bj from "../img/bj.jpg";
 
 const OuterDiv = styled.div`
     margin: 0 auto;
+    padding-top: 40px;
 `;
 
 const Text1 = styled.div`
@@ -22,7 +23,7 @@ const Title = styled.div`
     font-size: 80px;
     text-align: center;
     font-weight: bold;
-    margin-top: 30px;
+    margin-top: 0px;
     margin-bottom: 20px;
 `;
 
@@ -110,7 +111,7 @@ class About extends React.Component {
             <Box>
              <Name>Adam Isenberg</Name> 
              <Desc>Fullstack Developer</Desc> 
-             <Desc>Computer Science</Desc>
+             <Desc>Computer Scientist</Desc>
              <Desc>from South Africa</Desc>
              </Box></CardR>
 
