@@ -16,7 +16,7 @@ OMi was built off of React.js and Flask. Using data provided by [Columbia’s Di
 
 The UI was built on Figma; the wireframe consists of the main page and the disease sorting pages. We’ve implemented all of these features in our demo. Figma is viewable [here](https://www.figma.com/file/GvtZjMf6w3tGAaJn8DjCmT/Telehealth-App?node-id=1%3A2)
 
-The entire site is live and is being run on [Heroku](medicalinformant.heroku.com)
+The entire site is live and is being run on Firebase. 
 ## Challenges we ran into
 On our team, we lacked an experienced front end web developer. This made the development of the front end slower and more cumbersome than a usual hackathon project. Despite this, as a team, we pitched in as much (or little) CSS, HTML, and JS we knew in order to complete the site.
 
