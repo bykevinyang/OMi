@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Wr = styled.div`
 
     height: 100%;
-    background: black;
+    background-image: linear-gradient(to right, #BFF6EC , #C7CCE7);
 
 `;
 

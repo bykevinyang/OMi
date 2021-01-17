@@ -16,7 +16,7 @@ const Sym1 = styled.button`
         }
     }
 
-    background-color: white;
+    background: linear-gradient(to right, #ffffff , #e6f9fc);
     color: black;
     font-size:30px;
     border: none;
@@ -31,11 +31,13 @@ const Sym1 = styled.button`
         animation: out 1s;
         background-color: #e9ecf2;
         color: black;
+        border: 5px solid black;
     }
 
     &:hover {
-        background-color: #e9ecf2;
+        background: white;
         color: black;
+        border: 5px solid black;
     }
 
 `;

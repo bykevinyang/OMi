@@ -15,7 +15,7 @@ import BtnNext from './BtnNext';
 const OuterWrap = styled.div`
 
     height: 100%;
-    background: #2d2d2e;
+    background: #121212;
 
 `;
 
@@ -100,6 +100,7 @@ class Controls extends React.Component{
         let a = <section> </section>;
         let e = <section> </section>;
         let r = <Disease name = {this.state.dname} desc = {this.state.ddesc} />
+
         if (this.state.diseased === false) {
 
             a = <Ask />;
@@ -114,6 +115,8 @@ class Controls extends React.Component{
         } else {
             console.log("##" + this.state.ddesc);
         }
+
+        if (this.state.firstTime) e = <Search found = {this.remove} items = {this.state.searchItems}></Search>;
         
 
         return <OuterWrap>

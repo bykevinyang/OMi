@@ -1,6 +1,7 @@
 import './App.css';
 import Bar from './components/Bar';
 import Controls from './components/Controls';
+import Intro from './components/Intro';
 import PageWrap from './components/PageWrap';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
 
       <PageWrap>
         <Bar></Bar>
+        <Intro></Intro>
       </PageWrap>
 
       <PageWrap>
