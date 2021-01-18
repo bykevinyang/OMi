@@ -71,13 +71,19 @@ class Controls extends React.Component{
         //for (let i = 0; i < this.state.symptomBranch.length; i++) {
         let keepgoing = true;
 
+        let bln = [];
+
         if (this.state.firstTime){
             display = [...this.state.symptomBranch];
         } else
         while (keepgoing){
             
             let i = Math.floor(Math.random() * this.state.symptomBranch.length);  
-
+            while (bln.includes(i)){
+                i = Math.floor(Math.random() * this.state.symptomBranch.length); 
+                console.log("dupe checked");
+            }
+            bln.push(i);
 
             //Math.floor(Math.random() * 11);  
 

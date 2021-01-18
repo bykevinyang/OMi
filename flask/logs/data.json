@@ -1,1 +1,24 @@
-[]
+[
+    {
+        "disease": "diverticulitis",
+        "0": "abscess bacterial",
+        "1": "dullness",
+        "2": "red blotches",
+        "3": "diarrhea",
+        "4": "sore to touch",
+        "5": "dysuria",
+        "6": "pain",
+        "7": "vomiting",
+        "8": "sinus rhythm",
+        "9": "colic abdominal",
+        "10": "apyrexial",
+        "11": "abdominal tenderness",
+        "12": "fever",
+        "13": "unsteady gait",
+        "14": "thicken",
+        "15": "urgency of micturition",
+        "16": "anorexia",
+        "17": "monoclonal",
+        "18": "constipation"
+    }
+]

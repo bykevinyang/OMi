@@ -6,7 +6,6 @@ import Intro from './components/Intro';
 import PageWrap from './components/PageWrap';
 import Top from './components/Top';
 import About from './components/About';
-import User from './components/User';
 
 function App() {
   
