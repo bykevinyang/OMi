@@ -11,6 +11,7 @@ import Disease from './Disease';
 import Ask from './Ask';
 
 import BtnNext from './BtnNext';
+import User from './User';
 
 const OuterWrap = styled.div`
 
@@ -35,6 +36,7 @@ class Controls extends React.Component{
         blacklist: [],
         final: 0
     }
+    
 
     componentDidMount() {  
         fetch("http://localhost:8080/autocomplete")
@@ -44,6 +46,9 @@ class Controls extends React.Component{
                           this.setState({searchItems: result.Symptoms});
                   }
               )  
+
+        User.setId(Math.random().toString().substr(2, 9) + Math.random().toString().substr(2, 3));
+        console.log(User.getId());
     }
 
     searchFound = (name) => {
@@ -100,7 +105,7 @@ class Controls extends React.Component{
         let a = <section> </section>;
         let g = <section> </section>;
         let e = <section> </section>;
-        let r = <Disease name = {this.state.dname} desc = {this.state.ddesc} />
+        let r = <Disease name = {this.state.dname} desc = {this.state.ddesc} click = {this.resetCtrls}/>
 
         if (this.state.diseased === false) {
 
@@ -134,6 +139,32 @@ class Controls extends React.Component{
             <div>{e}</div>
         </OuterWrap>;
 
+    }
+
+    resetCtrls = () => {
+        this.setState({
+            isLoaded: false,
+            symptomBranch: ["Headache", "Cough", "Clammy Skin", "Throat Sore"],
+            firstTime: true,
+            firstTime2: true,
+            control: 0,
+            diseased: false,
+            dname: "unset",
+            ddesc: "unset",
+            blacklist: [],
+            final: 0
+        });
+        console.log("reset complete");
+
+        fetch("http://localhost:8080/clear")
+            .then(res => res.json())
+                .then(
+                    (result) => {
+                    }
+                )  
+
+        window.scrollTo(0, window.innerHeight);
+        
     }
 
     nextSet = () => {

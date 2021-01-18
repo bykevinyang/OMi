@@ -12,7 +12,7 @@ const Wrapp = styled.div`
     min-height: 600px;
     margin: 0 auto;
     margin-top: 70px;
-    padding-top: 25px;
+    padding: 25px;
     `;
 
 const Title = styled.p`
@@ -39,6 +39,24 @@ const Para2 = styled.p`
 
     `;
 
+const Exit = styled.button`
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 2px solid black;
+    background: white;
+    float: right;
+    top: 0;
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: bold;
+
+    &:hover{
+        background: black;
+        color: white;
+    }
+`;
+
 class Disease extends React.Component {
 
     
@@ -48,7 +66,7 @@ class Disease extends React.Component {
 
 
         return <Wrapp>
-
+        <Exit onClick = {() => this.props.click()}>X</Exit>
         <Para2>We think you might have</Para2>
         <Title>{this.props.name}</Title>
         <Para>{this.props.desc}</Para>
