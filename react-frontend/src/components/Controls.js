@@ -16,7 +16,6 @@ import User from './User';
 const OuterWrap = styled.div`
 
     height: 100%;
-    background: #0d1117;
 
 `;
 

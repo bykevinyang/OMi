@@ -11,6 +11,8 @@ const OD = styled.div`
 
 function Search(props) {   
 
+        const [st, setSt] = useState(0);
+
 
                 const handleOnSearch = (string, cached) => {
                     // onSearch returns the string searched and if
@@ -24,6 +26,8 @@ function Search(props) {
                     console.log(item)
 
                     props.found(item.name);
+
+                    
 
                   }
                 
