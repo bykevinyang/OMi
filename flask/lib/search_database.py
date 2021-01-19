@@ -60,14 +60,13 @@ class User:
                 if item == 'disease':
                     pass
                 else:
-                    try:
-                        if user_symptoms == row[item]:
-                            new_data.append(row)
-                    except:
-                        print(user_symptoms)
-                        print('-'*100)
-                        print(row)
+                    if not user_symptoms:
+                        new_data.append(row)
+                    elif user_symptoms == row[item]:
+                        new_data.append(row)
+                    else:
                         pass
+
 
         for row in new_data:
             for item in row:
@@ -85,7 +84,7 @@ class User:
 
     def search_user_data(self, user_id, main_data, user_symptoms, cursor):
         # Search the user data and updates it.
-        cursor.execute(f"SELECT data FROM users WHERE id = '{self.user_id}'")
+        self.cursor.execute(f"SELECT data FROM users WHERE id = '{self.user_id}'")
         searched_data = (self.cursor.fetchall())[0][0]
         searched_data = json.loads(searched_data)
 
@@ -153,6 +152,30 @@ class User:
             symptoms = list(set(symptoms))
             return {'symptoms' : symptoms}
 
+
+    def search_symptoms(self):
+        self.cursor.execute("select id from users where id=?", (self.user_id,))
+        searched_data = self.cursor.fetchall()
+        if searched_data:
+            print('[+] User found.')
+            self.cursor.execute(f"SELECT data FROM users WHERE id = '{self.user_id}'")
+            searched_data = (self.cursor.fetchall())[0][0]
+            searched_data = json.loads(searched_data)
+
+            symptoms = []
+            for row in searched_data:
+                for item in row:
+                    if item == 'disease':
+                        pass
+                    else:
+                        symptoms.append(row[item])
+
+            symptoms = list(set(symptoms))
+            return {'symptoms' : symptoms}
+
+        else:
+            print('[+] User not found.')
+            return self.create_user(self.user_id, self.main_data, self.user_symptoms, self.cursor)
 
 
     def search_disease(self):
