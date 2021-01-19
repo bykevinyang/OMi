@@ -112,9 +112,9 @@ class User:
 
         if len(new_data) == 1:
             print('[+] Found disease!')
-            disease_name = new_data[0]['disease'].title()
+            disease_name = {'disease_name' : new_data[0]['disease'].title()}
             self.cursor.execute(f"DELETE FROM users WHERE id = '{self.user_id}'")
-            return {'disease_name' : disease_name}
+            return {'disease' : [disease_name]}
 
         elif len(new_data) == 2:
             tmp_symptoms_1 = []
@@ -137,13 +137,12 @@ class User:
 
             if tmp_symptoms_1 == tmp_symptoms_2:
                 print('WHAAATTT THEY ARE THE EXACT SAME')
-                disease_name_1 = new_data[0]['disease'].title()
-                disease_name_2 = new_data[1]['disease'].title()
+                disease_name_1 = {'disease_name' : new_data[0]['disease'].title()}
+                disease_name_2 = {'disease_name' : new_data[1]['disease'].title()}
 
-                disease_info_1 = {'disease_name' : disease_name_1}
-                disease_info_2 = {'disease_name' : disease_name_2}
+
                 self.cursor.execute(f"DELETE FROM users WHERE id = '{self.user_id}'")
-                return {'disease' : [disease_info_1, disease_info_2]}
+                return {'disease' : [disease_name_1, disease_name_2]}
 
             else:
                 symptoms = list(set(symptoms))
