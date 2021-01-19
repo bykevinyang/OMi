@@ -51,7 +51,7 @@ class Controls extends React.Component{
     }
 
     searchFound = (name) => {
-        fetch("http://localhost:8080/disease/"+name)
+        fetch("http://localhost:8080/disease/" + name + "/u/" + User.getId())
             .then(res => res.json())
                 .then(
                     (result) => {
@@ -175,7 +175,7 @@ class Controls extends React.Component{
     nextSet = () => {
 
         if (this.state.firstTime2){
-        fetch("http://localhost:8080/symptoms")
+        fetch("http://localhost:8080/symptoms" + "/u/" + User.getId())
           .then(res => res.json())
               .then(
                   (result) => {
@@ -201,7 +201,7 @@ class Controls extends React.Component{
     
         let temp = ["", "", "", ""];
         console.log(" --- " + type);
-        fetch("http://localhost:8080/disease/"+type.toLowerCase())
+        fetch("http://localhost:8080/disease/"+type.toLowerCase() + "/u/" + User.getId())
             .then(res => res.json())
                 .then(
                     (result) => {
