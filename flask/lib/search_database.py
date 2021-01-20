@@ -6,6 +6,24 @@ import wikipedia
 from pprint import pprint
 
 
+def first_symptoms(main_data, mode):
+    symptoms = []
+    for row in main_data:
+        for item in row:
+            if item == 'disease':
+                pass
+            else:
+                symptoms.append(row[item])
+    symptoms = list(set(symptoms))
+    if mode == 'a':
+        autocomplete_symptoms = []
+        for item in symptoms:
+            tmp_dict = {}
+            tmp_dict['name'] = item.title()
+            autocomplete_symptoms.append(tmp_dict)
+        return {'symptoms' : autocomplete_symptoms}
+    else:
+        return {'symptoms' : symptoms}
 
 
 def check_database():
@@ -22,11 +40,13 @@ def check_database():
         pass
 
 class User:
-    def __init__(self, user_id, main_data, user_symptoms, cursor):
+    def __init__(self, user_id = None, main_data = None, user_symptoms = None, mode = None, cursor = None, disease_name = None):
         self.user_id = user_id
         self.main_data = main_data
         self.user_symptoms = user_symptoms
         self.cursor = cursor
+        self.mode = mode
+        self.disease_name = disease_name
 
 
     def search_wikipedia(self, disease_name):
@@ -54,20 +74,17 @@ class User:
         # Creates a list of diseases, symptoms data according to the usesr symptoms and creates a new value for the user in the database.
         new_data = []
         symptoms = []
-
         for row in main_data:
             for item in row:
                 if item == 'disease':
                     pass
+                elif self.user_symptoms == row[item]:
+                    print(self.user_symptoms)
+                    new_data.append(row)
                 else:
-                    if not user_symptoms:
-                        new_data.append(row)
-                    elif user_symptoms == row[item]:
-                        new_data.append(row)
-                    else:
-                        pass
+                    pass
 
-
+        pprint(new_data)
         for row in new_data:
             for item in row:
                 if item == 'disease':
@@ -77,8 +94,19 @@ class User:
 
         symptoms = list(set(symptoms))
         self.cursor.execute("insert into users values (?, ?)", [f'{self.user_id}', json.dumps(new_data)])
+        with open('logs/data.json', 'w') as f:
+            json.dump(new_data, f, indent=4)
 
-        return {'symptoms' : symptoms}
+        print(self.mode)
+        if self.mode == 'a':
+            autocomplete_symptoms = []
+            for item in symptoms:
+                tmp_dict = {}
+                tmp_dict['name'] = item.title()
+                autocomplete_symptoms.append(tmp_dict)
+            return {'symptoms' : autocomplete_symptoms}
+        else:
+            return {'symptoms' : symptoms}
 
 
 
@@ -87,7 +115,6 @@ class User:
         self.cursor.execute(f"SELECT data FROM users WHERE id = '{self.user_id}'")
         searched_data = (self.cursor.fetchall())[0][0]
         searched_data = json.loads(searched_data)
-
         new_data = []
         symptoms = []
 
@@ -108,7 +135,8 @@ class User:
 
         print(f'Length: {len(searched_data)}')
         print(f'Length: {len(new_data)}')
-
+        with open('logs/data.json', 'w') as f:
+            json.dump(new_data, f, indent=4)
         if len(new_data) == 1:
             print('[+] Found disease!')
             disease_name = {'disease_name' : new_data[0]['disease'].title()}
@@ -162,6 +190,7 @@ class User:
             searched_data = (self.cursor.fetchall())[0][0]
             searched_data = json.loads(searched_data)
 
+
             symptoms = []
             for row in searched_data:
                 for item in row:
@@ -171,12 +200,26 @@ class User:
                         symptoms.append(row[item])
 
             symptoms = list(set(symptoms))
-            return {'symptoms' : symptoms}
+
+            if self.mode == 'a':
+                autocomplete_symptoms = []
+                for item in symptoms:
+                    tmp_dict = {}
+                    tmp_dict['name'] = item.title()
+                    autocomplete_symptoms.append(tmp_dict)
+                return {'symptoms' : autocomplete_symptoms}
+
+            else:
+                return {'symptoms' : symptoms}
 
         else:
             print('[+] User not found.')
             return self.create_user(self.user_id, self.main_data, self.user_symptoms, self.cursor)
 
+
+    def search_disease_description(self):
+
+        return self.disease_name
 
     def search_disease(self):
         #Search for user_id in the database.

@@ -26,8 +26,9 @@ const Wrapper = styled.div`
     display: inline-block;
     width: 75%;
     max-width: 75%;
-    min-width: 895px;
+    
 `;
+//min-width: 895px;
 
 const CardL = styled.div`
     width: 35%;
@@ -38,6 +39,7 @@ const CardL = styled.div`
     border-radius: 100px;
     overflow: hidden;
     float: left;
+    margin: 10px;
 `;
 
 const ImgDivL = styled.div`
@@ -66,6 +68,7 @@ const CardR = styled.div`
     border-radius: 100px;
     overflow: hidden;
     float: right;
+    margin: 10px;
 `;
 
 const ImgDivR = styled.div`
@@ -98,8 +101,8 @@ const From = styled.div`
 `;
 
 const Row = styled.div`
-    margin-bottom: 50px;
-    max-height: 180px;
+    margin-bottom: 40px;
+    max-height: 360px;
 `;
 
 

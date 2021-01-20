@@ -2,6 +2,28 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
+# Below are a series of functions that will scrape wikipedia.
+# wikiScrape is the main function that will automatically run the other functions, grabbing the URL of a wiki site
+# the first paragraph, and the text in the infobox.
+
+# grabURL gets the url of wikipedia site based on the inputted searchTerm
+
+# grabInfoBoxAll will grab all the text in the info box of a wikipedia site
+
+# grabSummary will grab the first paragraph of the wikipedia site.
+
+
+def wikiScrape(search_term):
+  URL = grabURL(search_term)
+
+  info = grabInfoBoxAll(URL)
+  summary = grabSummary(URL)
+
+  return (URL, info, summary)
+
+# Driver code for wikiScrape:
+# wikiScrape('cancer')
+
 def grabURL(searchTerm):
 
   try:
@@ -19,24 +41,19 @@ def grabURL(searchTerm):
 
     R = S.get(url=API, params=PARAMS)
     DATA = R.json()
-    return(DATA[-1])
+
+    DATA = DATA[-1]
+    DATA = DATA[0]
+
+    return(DATA)
 
   except:
-    return("No wiki site found")
+    return("No wiki site found") # Can be made as none if needed (so it throws an error)
 
-# Driver code:
+# Driver code for grabURL
 # grabURL("hypercholesterolemia")
 
-def grabSummary(url):
-  r = requests.get("https://en.wikipedia.org/api/rest_v1/page/summary/Amsterdam")
-  page = r.json()
-
-  return (page["extract"])
-
-# Driver code:
-# grabSummary(site_url)
-
-def grabInfoBox(url, keyword):
+def grabInfoBoxAll(url):
 
   current_position = 0
   final_position = 0
@@ -48,22 +65,41 @@ def grabInfoBox(url, keyword):
 
   info_row = table.findAll('tr')
 
+  infobox = []
+  current_row = {}
   for html in info_row:
-    if keyword in str(html):
-      final_position = current_position
-      current_position += 1
-    else:
-      current_position += 1
-  
-  row_description = info_row[final_position].find('td')
-  row_description = row_description.get_text()
+    if 'th' in str(html):
+      try: 
+        title = html.find('th')
+        title = title.get_text()
+        #print(title)
+      except:
+        continue
 
-  row_description = re.sub("[\(\[].*?[\)\]]", "", row_description)
+      try:
+        row_description = html.find('td')
+        row_description = row_description.get_text()
+        row_description = re.sub("[\(\[].*?[\)\]]", "", row_description)
+      except:
+        continue
+      current_row[title] = row_description
 
-  return(row_description)
+  return(current_row)
 
-# Driver code:
+#Driver code for grabInfoBoxAll
+
 # site_url = "https://en.wikipedia.org/wiki/Influenza"
-#search_word = "Medication"
+# search_word = "Medication"
 
-# grabInfoBox(site_url, search_word)
+def grabSummary(url):
+  split = url.split('/')
+  keyword = split[-1]
+  
+  summary_url = "https://en.wikipedia.org/api/rest_v1/page/summary/" + keyword
+  r = requests.get(summary_url)
+  page = r.json()
+
+  return (page["extract"])
+
+# Driver code for grabSummary:
+# grabSummary('https://en.wikipedia.org/wiki/Hypercholesterolemia')

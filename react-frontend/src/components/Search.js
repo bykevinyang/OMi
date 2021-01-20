@@ -19,6 +19,7 @@ function Search(props) {
                     // the values are cached. If the values are cached
                     // "cached" contains the cached values, if not, returns false
                     console.log(string, cached)
+                    console.log(props.items);
                   }
                 
                   const handleOnSelect = (item) => {
@@ -28,7 +29,7 @@ function Search(props) {
                     props.found(item.name);
 
                     
-
+                    
                   }
                 
                   const handleOnFocus = () => {

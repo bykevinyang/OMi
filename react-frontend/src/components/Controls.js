@@ -1,22 +1,26 @@
 import React from 'react';
-
 import styled from 'styled-components';
-
 import Search from './Search';
-
 import Sym from './Sym';
-
 import Disease from './Disease';
-
 import Ask from './Ask';
-
 import BtnNext from './BtnNext';
 import User from './User';
+import ToControl from './ToControl';
 
 const OuterWrap = styled.div`
 
     height: 100%;
 
+`;
+
+const CardWrap = styled.div`
+    height: 40%;
+    width: 50%;
+    min-width: 650px;
+    padding: 0px;
+    margin: 0 auto;
+    margin-top: 20px;
 `;
 
 
@@ -38,29 +42,22 @@ class Controls extends React.Component{
     
 
     componentDidMount() {  
-        fetch("http://localhost:8080/autocomplete")
-          .then(res => res.json())
-              .then(
-                  (result) => {
-                          this.setState({searchItems: result.Symptoms});
-                  }
-              )  
 
         User.setId(Math.random().toString().substr(2, 9) + Math.random().toString().substr(2, 3));
         console.log(User.getId());
-    }
 
-    searchFound = (name) => {
-        fetch("http://localhost:8080/disease/" + name + "/u/" + User.getId())
-            .then(res => res.json())
-                .then(
-                    (result) => {
-                         this.setState({symptomBranch: result.data});
-                    }
-                )  
+        fetch("http://localhost:8080/fsymptoms/m/a")
+          .then(res => res.json())
+              .then(
+                  (result) => {
 
-            this.setState({control: 1});
-                
+                          let set = [...result.data.symptoms];
+                          this.setState({searchItems: set});
+
+                  }
+              )  
+
+        
     }
 
     render() {
@@ -78,9 +75,10 @@ class Controls extends React.Component{
         while (keepgoing){
             
             let i = Math.floor(Math.random() * this.state.symptomBranch.length);  
-            while (bln.includes(i)){
+            while (bln.includes(i) && this.state.symptomBranch.length >= 4){
                 i = Math.floor(Math.random() * this.state.symptomBranch.length); 
-                console.log("dupe checked");
+                console.log("dupe checked - Len:"+this.state.symptomBranch.length);
+                
             }
             bln.push(i);
 
@@ -88,12 +86,14 @@ class Controls extends React.Component{
 
             let inBL = false;
             if (this.state.blacklist[0] !== undefined)
+            if (this.state.symptomBranch.length > 0)
             for (let z = 0; z < this.state.blacklist.length; z++) {
    
-                if (this.state.symptomBranch[i].toLowerCase() === this.state.blacklist[z].toLowerCase()){
-                    inBL = true;
-                    console.log("was hre");
-                }
+                    console.log("to lower: " + this.state.symptomBranch[i]);
+                    if (this.state.symptomBranch[i].toLowerCase() === this.state.blacklist[z].toLowerCase()){
+                        inBL = true;
+                        console.log("was hre");
+                    }
                 
             }
 
@@ -101,13 +101,13 @@ class Controls extends React.Component{
 
             c++;
             display.push(this.state.symptomBranch[i]);
-            if (display.length == 4) keepgoing = false;
-
+            if (display.length >= 4) keepgoing = false;
+            console.log(display.length);
             //console.log("render log: " + display[i]);
 
-
+ 
         }
-        let a = <section> </section>;
+        let a = <section> </section>; 
         let g = <section> </section>;
         let e = <section> </section>;
         let r = <Disease name = {this.state.dname} desc = {this.state.ddesc} click = {this.resetCtrls}/>
@@ -140,7 +140,7 @@ class Controls extends React.Component{
         return <OuterWrap>
             {a}
             {g}
-            {r}
+            <CardWrap>{r}</CardWrap>
             <div>{e}</div>
         </OuterWrap>;
 
@@ -161,13 +161,6 @@ class Controls extends React.Component{
         });
         console.log("reset complete");
 
-        fetch("http://localhost:8080/clear")
-            .then(res => res.json())
-                .then(
-                    (result) => {
-                    }
-                )  
-
         window.scrollTo(0, window.innerHeight);
         
     }
@@ -179,7 +172,7 @@ class Controls extends React.Component{
           .then(res => res.json())
               .then(
                   (result) => {
-                          this.setState({symptomBranch: result.symptoms, firstTime2: false, firstTime: false}); // you are here
+                          this.setState({symptomBranch: result.data.symptoms, firstTime2: false, firstTime: false}); // you are here
                   }
               )  
         } else {
@@ -200,31 +193,34 @@ class Controls extends React.Component{
         let ddd = false;
     
         let temp = ["", "", "", ""];
-        console.log(" --- " + type);
-        fetch("http://localhost:8080/disease/"+type.toLowerCase() + "/u/" + User.getId())
+        
+        type = type.toLowerCase();
+        console.log(" --- " + type)
+
+
+        fetch("http://localhost:8080/disease/"+ type + "/u/" + User.getId())
             .then(res => res.json())
                 .then(
                     (result) => {
-                            console.log("Disease data val: " + result.data.disease);
+
+                            console.log("SENT: " + type);
+                            console.log("RECEIVED: " + JSON.stringify(result.data));
+                            console.log("disease: " + result.data.disease)
+
                             if (result.data.disease != undefined){
-                                
-                                if (result.data.disease[0].disease != undefined){
-                                    temp = "";
-                                    console.log("OAISDHIAHDSA");
-                                    ddname = result.data.disease[0].disease;
-                                    dddesc =  result.data.disease[0].description;
-                                    ddd = true;
-                                } else {
 
-                                temp = "";
-                                console.log("OAISDHIAHDSA");
-                                ddname = result.data.disease;
-                                dddesc =  result.data.description;
+                                temp = [];
+                                console.log("found disease: init");
+                                ddname = result.data.disease[0].disease_name;
+                                //dddesc =  result.data.description;
                                 ddd = true;
-                                }
-
+                                console.log("found disease: set name");
+                                
                                 //this.setState({final: true});
-                                this.setState({diseased: ddd, dname: ddname, ddesc: dddesc, blacklist: pq});
+                                setTimeout(() => {
+                                    this.setState({diseased: ddd, dname: ddname, ddesc: dddesc, blacklist: pq});
+                                }, 800);
+                                
 
                             } else {
 

@@ -25,7 +25,7 @@ function App() {
         <Controls />
       </PageWrap>
 
-      <PageWrap>
+      <PageWrap c = "adapt">
         <About2 />
       </PageWrap>
 

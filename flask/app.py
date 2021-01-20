@@ -9,7 +9,7 @@ from pprint import pprint
 from flask import Flask
 from flask import render_template, url_for
 
-from lib.search_database import User, check_database
+from lib.search_database import User, check_database, first_symptoms
 
 app = Flask(__name__)
 
@@ -22,34 +22,55 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/symptoms/u/<user_id>')
-def symptoms(user_id):
+@app.route('/fsymptoms/m/<mode>')
+def fsymptoms(mode):
+    with open('Data/json/dataset.json') as f:
+        data = json.load(f)
+    data = first_symptoms(data, mode)
+    return {'data' : data}
+
+
+
+@app.route('/description/<disease_name>')
+def description(disease_name):
+    check_database()
+    user = User(disease_name = disease_name)
+    data = user.search_disease_description()
+    return {'data' : data}
+
+
+
+@app.route('/symptoms/u/<user_id>/m/<mode>')
+def symptoms(user_id, mode):
+    # autocomplete --> a
+    # more --> m
     check_database()
     conn = sqlite3.connect('Data/sql/users.db')
     cursor = conn.cursor()
     with open('Data/json/dataset.json') as f:
         data = json.load(f)
-    user =  user = User(str(user_id) , data, '', cursor)
+    user =  user = User(str(user_id) , data, '', mode, cursor)
+    user =  user = User(user_id = str(user_id) , main_data = data, mode = mode, cursor = cursor)
     data =  user.search_symptoms()
     conn.commit()
     conn.close()
     return {'data' : data}
 
 
-@app.route('/disease/<user_symptom>/u/<user_id>')
+@app.route('/disease/<user_symptom>/u/<user_id>/')
 def update_data(user_id, user_symptom):
+    print(user_id)
+    user_symptom = user_symptom.lower()
     check_database()
     conn = sqlite3.connect('Data/sql/users.db')
     cursor = conn.cursor()
     with open('Data/json/dataset.json') as f:
         data = json.load(f)
-    user = User(str(user_id) , data, str(user_symptom), cursor)
+    user = User(user_id = str(user_id) , main_data = data, user_symptoms = str(user_symptom), cursor = cursor)
     data =  user.search_disease()
     conn.commit()
     conn.close()
     return {'data' : data}
-
-
 
 
 if __name__ == '__main__':
