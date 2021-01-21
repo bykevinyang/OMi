@@ -37,7 +37,8 @@ class Controls extends React.Component{
         dname: "unset",
         ddesc: "unset",
         blacklist: [],
-        final: 0
+        final: 0,
+        constSI: []
     }
     
 
@@ -50,7 +51,7 @@ class Controls extends React.Component{
           .then(res => res.json())
               .then(
                   (result) => {
-
+                          this.state.constSI = [...result.data.symptoms];
                           let set = [...result.data.symptoms];
                           this.setState({searchItems: set});
 
@@ -82,7 +83,7 @@ class Controls extends React.Component{
             }
             bln.push(i);
 
-            //Math.floor(Math.random() * 11);  
+            //Math.floor(Math.random() * 11);   
 
             let inBL = false;
             if (this.state.blacklist[0] !== undefined)
@@ -94,7 +95,7 @@ class Controls extends React.Component{
                         inBL = true;
                         console.log("was hre");
                     }
-                
+                 
             }
 
             if (inBL) continue;
@@ -156,6 +157,7 @@ class Controls extends React.Component{
             diseased: false,
             dname: "unset",
             ddesc: "unset",
+            searchItems: this.state.constSI,
             blacklist: [],
             final: 0
         });
@@ -167,14 +169,14 @@ class Controls extends React.Component{
 
     nextSet = () => {
 
-        if (this.state.firstTime2){
-        fetch("http://localhost:8080/symptoms" + "/u/" + User.getId())
-          .then(res => res.json())
-              .then(
-                  (result) => {
-                          this.setState({symptomBranch: result.data.symptoms, firstTime2: false, firstTime: false}); // you are here
-                  }
-              )  
+        if (this.state.firstTime){
+            fetch("http://localhost:8080/fsymptoms" + "/m/m")
+            .then(res => res.json())
+                .then(
+                    (result) => {
+                            this.setState({symptomBranch: result.data.symptoms, firstTime2: false, firstTime: false}); // you are here
+                    }
+                )  
         } else {
             this.forceUpdate();
         }
@@ -247,21 +249,21 @@ class Controls extends React.Component{
                     }
                 )   
             
-        /*for (let i = 0; i < temp.length; i++){
-            //console.log(temp[i].type + "-" + type);
-            if (temp[i].type === type){
-                
-                temp.splice(i, 1);
-                break;
-            }
-        }*/
+        
 
         
         setTimeout(() => {
             console.log("ddd: " + ddd);
-            this.setState({symptomBranch: temp, diseased: ddd, dname: ddname, ddesc: dddesc, blacklist: pq, firstTime: false});
 
-        }, 900);
+            fetch("http://localhost:8080/symptoms" + "/u/" + User.getId() + "/m/a")
+            .then(res => res.json())
+                .then(
+                    (result) => {
+                        let si = [...result.data.symptoms];
+                        this.setState({symptomBranch: temp, diseased: ddd, dname: ddname, ddesc: dddesc, blacklist: pq, firstTime: false, searchItems: si});
+                    }
+                )
+        }, 500);
 
         
 

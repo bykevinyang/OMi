@@ -1,20 +1,11 @@
-import os
-import re
 import json
 import sqlite3
-import wikipedia
-from pprint import pprint
-
-
 from flask import Flask
 from flask import render_template, url_for
 
-from lib.search_database import User, check_database, first_symptoms
+from lib.search_database import User, check_database, first_symptoms, disease_info
 
 app = Flask(__name__)
-
-symptoms_list = []
-user_ids = []
 
 
 @app.route('/')
@@ -33,9 +24,7 @@ def fsymptoms(mode):
 
 @app.route('/description/<disease_name>')
 def description(disease_name):
-    check_database()
-    user = User(disease_name = disease_name)
-    data = user.search_disease_description()
+    data = disease_info(disease_name)
     return {'data' : data}
 
 
@@ -64,6 +53,7 @@ def update_data(user_id, user_symptom):
     check_database()
     conn = sqlite3.connect('Data/sql/users.db')
     cursor = conn.cursor()
+    cursor.execute(f"DELETE FROM users WHERE data = '[]'")
     with open('Data/json/dataset.json') as f:
         data = json.load(f)
     user = User(user_id = str(user_id) , main_data = data, user_symptoms = str(user_symptom), cursor = cursor)

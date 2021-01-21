@@ -2,9 +2,22 @@ import os
 import re
 import json
 import sqlite3
-import wikipedia
 from pprint import pprint
 
+from lib.wiki_scrapper import grabSummary, grabInfoBoxAll, grabURL
+
+def check_database():
+    if not os.path.exists('Data/sql/users.db'):
+        test_json = {'disease' : 'test_disease', '0' : 'test_symptom'}
+        conn = sqlite3.connect('Data/sql/users.db')
+        cursor = conn.cursor()
+        cursor.execute("CREATE TABLE users (id varchar(64), data json)")
+        cursor.execute("insert into users values (?, ?)", ['0000', json.dumps(test_json)])
+        conn.commit()
+        conn.close()
+        print('[+] Created users databse.')
+    else:
+        pass
 
 def first_symptoms(main_data, mode):
     symptoms = []
@@ -26,18 +39,26 @@ def first_symptoms(main_data, mode):
         return {'symptoms' : symptoms}
 
 
-def check_database():
-    if not os.path.exists('Data/sql/users.db'):
-        test_json = {'disease' : 'test_disease', '0' : 'test_symptom'}
-        conn = sqlite3.connect('Data/sql/users.db')
-        cursor = conn.cursor()
-        cursor.execute("CREATE TABLE users (id varchar(64), data json)")
-        cursor.execute("insert into users values (?, ?)", ['0000', json.dumps(test_json)])
-        conn.commit()
-        conn.close()
-        print('[+] Created users databse.')
-    else:
-        pass
+def disease_info(disease_name):
+    try:
+        summary = grabSummary(disease_name)
+    except:
+        summary = "Sorry, OMi couldn't find a description for this disease. Heydas. DSAd"
+
+    try:
+        information_box = grabInfoBoxAll(disease_name)
+    except:
+        information_box = ''
+
+    try:
+        url = grabURL(disease_name)
+    except:
+        url = "Wikipedia page not available."
+
+    data = {'disease_name' : disease_name, 'summary' : summary, 'info_box' : information_box, 'url' : url}
+    return data
+
+
 
 class User:
     def __init__(self, user_id = None, main_data = None, user_symptoms = None, mode = None, cursor = None, disease_name = None):
@@ -49,25 +70,8 @@ class User:
         self.disease_name = disease_name
 
 
-    def search_wikipedia(self, disease_name):
-        try:
-            description = wikipedia.summary(f'{disease_name} (disease)', sentences = 5, auto_suggest=False)
-            url = (wikipedia.page(f'{disease_name} (disease)')).url
-        except:
-            try:
-                description = wikipedia.summary(f'{disease_name}', sentences = 5, auto_suggest=False)
-                url = (wikipedia.page(f'{disease_name} (disease)')).url
-            except :
-                description = "Sorry, OMi couldn't find a description for this disease. Heydas. DSAd"
-                url = "Wikipedia page not available."
-
-        if description.endswith('.'):
-
-            pass
-        else:
-            description = description.rsplit('.', 1)[0] + '.'
-
-        return description, url
+    def clean_sql(self):
+        self.cursor.execute(f"DELETE FROM users WHERE data = '[]'")
 
 
     def create_user(self, user_id, main_data, user_symptoms, cursor):
@@ -79,12 +83,10 @@ class User:
                 if item == 'disease':
                     pass
                 elif self.user_symptoms == row[item]:
-                    print(self.user_symptoms)
                     new_data.append(row)
                 else:
                     pass
 
-        pprint(new_data)
         for row in new_data:
             for item in row:
                 if item == 'disease':
@@ -97,7 +99,6 @@ class User:
         with open('logs/data.json', 'w') as f:
             json.dump(new_data, f, indent=4)
 
-        print(self.mode)
         if self.mode == 'a':
             autocomplete_symptoms = []
             for item in symptoms:
@@ -141,6 +142,8 @@ class User:
             print('[+] Found disease!')
             disease_name = {'disease_name' : new_data[0]['disease'].title()}
             self.cursor.execute(f"DELETE FROM users WHERE id = '{self.user_id}'")
+            print(cursor.rowcount)
+            print(f'[+] Deleted User {self.user_id}')
             return {'disease' : [disease_name]}
 
         elif len(new_data) == 2:
@@ -169,6 +172,8 @@ class User:
 
 
                 self.cursor.execute(f"DELETE FROM users WHERE id = '{self.user_id}'")
+                print(cursor.rowcount)
+                print(f'[+] Deleted User {self.user_id}')
                 return {'disease' : [disease_name_1, disease_name_2]}
 
             else:
@@ -216,10 +221,6 @@ class User:
             print('[+] User not found.')
             return self.create_user(self.user_id, self.main_data, self.user_symptoms, self.cursor)
 
-
-    def search_disease_description(self):
-
-        return self.disease_name
 
     def search_disease(self):
         #Search for user_id in the database.

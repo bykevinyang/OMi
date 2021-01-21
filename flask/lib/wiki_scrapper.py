@@ -1,6 +1,7 @@
+import re
 import requests
 from bs4 import BeautifulSoup
-import re
+
 
 # Below are a series of functions that will scrape wikipedia.
 # wikiScrape is the main function that will automatically run the other functions, grabbing the URL of a wiki site
@@ -24,7 +25,7 @@ def wikiScrape(search_term):
 # Driver code for wikiScrape:
 # wikiScrape('cancer')
 
-def grabURL(searchTerm):
+def grabURL(disease_name):
 
   try:
     S = requests.Session()
@@ -34,9 +35,9 @@ def grabURL(searchTerm):
     PARAMS = {
       "action": "opensearch",
       "namespace": "0",
-      "search": searchTerm,
+      "search": disease_name,
       "limit": "1",
-      "format": "json" 
+      "format": "json"
     }
 
     R = S.get(url=API, params=PARAMS)
@@ -53,11 +54,11 @@ def grabURL(searchTerm):
 # Driver code for grabURL
 # grabURL("hypercholesterolemia")
 
-def grabInfoBoxAll(url):
+def grabInfoBoxAll(disease_name):
 
   current_position = 0
   final_position = 0
- 
+  url = f'https://en.wikipedia.org/wiki/{disease_name}'
   website_url = requests.get(url).text
   soup = BeautifulSoup(website_url,"lxml")
 
@@ -69,7 +70,7 @@ def grabInfoBoxAll(url):
   current_row = {}
   for html in info_row:
     if 'th' in str(html):
-      try: 
+      try:
         title = html.find('th')
         title = title.get_text()
         #print(title)
@@ -91,11 +92,11 @@ def grabInfoBoxAll(url):
 # site_url = "https://en.wikipedia.org/wiki/Influenza"
 # search_word = "Medication"
 
-def grabSummary(url):
-  split = url.split('/')
+def grabSummary(disease_name):
+  split = disease_name.split('/')
   keyword = split[-1]
-  
-  summary_url = "https://en.wikipedia.org/api/rest_v1/page/summary/" + keyword
+
+  summary_url = "https://en.wikipedia.org/api/rest_v1/page/summary/" + disease_name
   r = requests.get(summary_url)
   page = r.json()
 
