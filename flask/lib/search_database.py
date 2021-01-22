@@ -1,10 +1,22 @@
 import os
 import re
 import json
+import logging
 import sqlite3
 from pprint import pprint
-
+from datetime import datetime
 from lib.wiki_scrapper import grabSummary, grabInfoBoxAll, grabURL
+
+
+formatter = logging.Formatter('%(asctime)s - %(message)s', datefmt='%Y-%m-%d : %H:%M:%S')
+handler = logging.FileHandler('logs/logs.txt')
+handler.setFormatter(formatter)
+logger = logging.getLogger(__name__)
+logger.addHandler(handler)
+logger.setLevel(logging.INFO)
+
+handler.setFormatter(formatter)
+
 
 def check_database():
     if not os.path.exists('Data/sql/users.db'):
@@ -15,6 +27,7 @@ def check_database():
         cursor.execute("insert into users values (?, ?)", ['0000', json.dumps(test_json)])
         conn.commit()
         conn.close()
+        logger.info(f'Created new databse.')
         print('[+] Created users databse.')
     else:
         pass
@@ -56,6 +69,7 @@ def disease_info(disease_name):
         url = "Wikipedia page not available."
 
     data = {'disease_name' : disease_name, 'summary' : summary, 'info_box' : information_box, 'url' : url}
+    logger.info(f'Sent {disease_name} disease infromation.')
     return data
 
 
@@ -142,8 +156,9 @@ class User:
             print('[+] Found disease!')
             disease_name = {'disease_name' : new_data[0]['disease'].title()}
             self.cursor.execute(f"DELETE FROM users WHERE id = '{self.user_id}'")
-            print(cursor.rowcount)
             print(f'[+] Deleted User {self.user_id}')
+            logger.info(f'Found disease for user id: {self.user_id}.')
+            logger.info(f'Deleted user id:{self.user_id} from the databse.')
             return {'disease' : [disease_name]}
 
         elif len(new_data) == 2:
@@ -172,8 +187,9 @@ class User:
 
 
                 self.cursor.execute(f"DELETE FROM users WHERE id = '{self.user_id}'")
-                print(cursor.rowcount)
                 print(f'[+] Deleted User {self.user_id}')
+                logger.info(f'Found two diseases for user id: {self.user_id}.')
+                logger.info(f'Deleted user id:{self.user_id} from the databse.')
                 return {'disease' : [disease_name_1, disease_name_2]}
 
             else:
@@ -228,8 +244,10 @@ class User:
         searched_data = self.cursor.fetchall()
         if searched_data:
             print('[+] User found.')
+            logger.info(f'Found user id: {self.user_id} in database.')
             return self.search_user_data(self.user_id, self.main_data, self.user_symptoms, self.cursor)
 
         else:
             print('[+] User not found.')
+            logger.info(f'Created new user id:{self.user_id}.')
             return self.create_user(self.user_id, self.main_data, self.user_symptoms, self.cursor)

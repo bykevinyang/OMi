@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Above = styled.div`
+    height: 25px;
+`;
+
 const Box = styled.div`
 
     margin: 0 auto;
@@ -30,7 +34,7 @@ const ILi = styled.li`
     border-radius: 5px;
 
     &:hover {
-        background: #d5d5d5;
+        cursor: pointer;
     }
     font-weight:bold;
     font-size: 21px;
@@ -56,6 +60,10 @@ const OMi = styled.p`
     font-size: 38px;
     font-weight: bolder;
 
+    &:hover {
+        cursor: default;
+    }
+
 `;
 
 class Bar extends React.Component {
@@ -77,7 +85,7 @@ class Bar extends React.Component {
 
 
         return <section>
-
+            <Above />
             <Box>
 
                 <OMi>OMi</OMi>

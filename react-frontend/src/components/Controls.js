@@ -20,9 +20,15 @@ const CardWrap = styled.div`
     min-width: 650px;
     padding: 0px;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 40px;
 `;
-
+const DWrap = styled.div`
+    height: 78%;
+    width: 80%;
+    min-width: 630px;
+    padding: 0px;
+    margin: 0 auto;
+`;
 
 class Controls extends React.Component{
 
@@ -111,19 +117,21 @@ class Controls extends React.Component{
         let a = <section> </section>; 
         let g = <section> </section>;
         let e = <section> </section>;
-        let r = <Disease name = {this.state.dname} desc = {this.state.ddesc} click = {this.resetCtrls}/>
+        let r = <DWrap>
+         <Disease name = {this.state.dname} desc = {this.state.ddesc} click = {this.resetCtrls}/>
+        </DWrap>
 
         if (this.state.diseased === false) {
 
             
             a = <Ask />;
-            r = 
+            r = <CardWrap>{
 
                 display.map(s => (
                 <Sym click = {this.remove} type = {s} key = {s} />
 
                 
-            ));
+            ))} </CardWrap>;
             e = <BtnNext click = {this.nextSet}/>
             g = <Search 
             found = {this.remove} 
@@ -141,7 +149,7 @@ class Controls extends React.Component{
         return <OuterWrap>
             {a}
             {g}
-            <CardWrap>{r}</CardWrap>
+            {r}
             <div>{e}</div>
         </OuterWrap>;
 

@@ -29,8 +29,6 @@ function App() {
         <About2 />
       </PageWrap>
 
-      <Top></Top>
-
     </div>
   );
 }

@@ -26,6 +26,7 @@ const Wrapper = styled.div`
     display: inline-block;
     width: 75%;
     max-width: 75%;
+    font-family: Arial;
     
 `;
 //min-width: 895px;
@@ -34,12 +35,12 @@ const CardL = styled.div`
     width: 35%;
     min-width: 443px;
     height: 180px;
-    padding: 10px;
     background: white;
     border-radius: 100px;
     overflow: hidden;
     float: left;
     margin: 10px;
+    padding-left: 10px;
 `;
 
 const ImgDivL = styled.div`
@@ -51,24 +52,28 @@ const ImgDivL = styled.div`
 const InfoL = styled.div`
     overflow: hidden;
     padding-right: 35px;
+    margin-top: 10px;
 `;
 
 const Img = styled.img`
     width: 100%;
     height: 100%;
     border-radius: 100px;
+    margin-top: 10px;
 `;
 
 const CardR = styled.div`
-    width: 35%;
-    min-width: 443px;
+    width: 445px;
+    min-width: 445px;
     height: 180px;
-    padding: 10px;
+    min-height: 180px;
+    max-height: 180px;
     background: white;
     border-radius: 100px;
     overflow: hidden;
     float: right;
     margin: 10px;
+    padding-right: 10px;
 `;
 
 const ImgDivR = styled.div`
@@ -80,6 +85,7 @@ const ImgDivR = styled.div`
 const InfoR = styled.div`
     overflow: hidden;
     padding-left: 35px;
+    margin-top: 10px;
 `;
 
 const Name = styled.div`

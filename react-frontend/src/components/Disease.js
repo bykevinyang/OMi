@@ -3,59 +3,67 @@ import React from 'react';
 import styled from 'styled-components';
 import ToControl from './ToControl';
 
+const Above = styled.div`
+    height: 27%;
+`;
+
 const Wrapp = styled.div`
 
-    background: white;
-    border-radius: 20px;
-    width: 80%;
-    height: 85%;
-    min-height: 600px;
-    margin: 0 auto;
-    margin-top: 70px;
-    padding: 25px;
+    width: 100%;
+    height: 100%;
+    color: white;
     `;
 
 const Title = styled.p`
-
-    font-size: 60px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-
+    margin: 0;
+    font-size: 40px;
+    text-align: center;
+    font-weight: bold;
+    `;
+const Para = styled.p`
+    margin: 10px 0 0 0;
+    font-size 60px;
+    font-weight: bold;
     `;
 
-const Para = styled.div`
-
-    font-size 25px;
-    margin:80px;
-    line-height:1.8;
-    overflow-y: auto;
-    max-height: 60%;
-
-    `;
-const Para2 = styled.p`
-
-    font-size 32px;
-    line-height:1;
-
-    `;
 
 const Exit = styled.button`
-    position: relative;
-    width: 50px;
+    width: 150px;
     height: 50px;
-    border: 2px solid black;
-    background: white;
-    float: right;
-    top: 0;
-    border-radius: 10px;
+    background: #0d1117;
+    color: white;
+    border-radius: 3px;
+    border: none;
     font-size: 30px;
     font-weight: bold;
 
     &:hover{
-        background: black;
-        color: white;
+        background: White;
+        color: Black;
+    }   
+`;
+
+const Next = styled.button`
+    width: 150px;
+    height: 50px;
+    background: #0d1117;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    font-size: 30px;
+    font-weight: bold;
+
+    &:hover{
+        background: White;
+        color: Black;
     }
 `;
+
+const Btns = styled.div`
+    height: 50px;
+    margin-top: 20%;
+`;
+
 
 class Disease extends React.Component {
 
@@ -66,11 +74,14 @@ class Disease extends React.Component {
 
 
         return <Wrapp>
-        <Exit onClick = {() => this.props.click()}>X</Exit>
-        <Para2>We think you might have</Para2>
-        <Title>{this.props.name}</Title>
-        <Para>{this.props.desc}</Para>
-        <ToControl></ToControl>
+                <Above />
+                <Title>We think you might have</Title>
+                <Para>{this.props.name}</Para>
+                
+            <Btns>
+                <Exit onClick = {() => this.props.click()}>Exit</Exit>
+                <Next>Next</Next>
+            </Btns>
         </Wrapp>;
     }
 

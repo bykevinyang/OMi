@@ -10,7 +10,7 @@ const Wr1 = styled.div`
     max-width: 100%;
     min-width: 755px;
     background-image: linear-gradient(90deg, #DEA0B5 , #C2C2E3, #B3E3EA);
-    padding: 25px 0 25px 0;
+
 `;
 
 const Wr1adapt = styled.div`
@@ -19,7 +19,7 @@ const Wr1adapt = styled.div`
     max-width: 100%;
     min-width: 755px;
     background-image: linear-gradient(90deg, #DEA0B5 , #C2C2E3, #B3E3EA);
-    padding: 25px 0 25px 0;
+
 `;
 
 const Wr = styled.div`
@@ -30,7 +30,7 @@ const Wr = styled.div`
     max-width: 100%;
     min-width: 755px;
     background: #0d1117;
-    padding: 25px 0 25px 0;
+
 `;
 
 class Page1 extends React.Component {
