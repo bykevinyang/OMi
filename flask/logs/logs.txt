@@ -1,1 +1,67 @@
 //LOGS FILE
+2021-01-22 : 18:05:31 - Created new user id:861761976696.
+2021-01-22 : 18:05:33 - Found user id: 861761976696 in database.
+2021-01-22 : 18:05:33 - Found two diseases for user id: 861761976696.
+2021-01-22 : 18:05:33 - Deleted user id:861761976696 from the databse.
+2021-01-22 : 18:07:21 - Created new user id:588282991298.
+2021-01-22 : 18:07:22 - Found user id: 588282991298 in database.
+2021-01-22 : 18:07:22 - Found two diseases for user id: 588282991298.
+2021-01-22 : 18:07:22 - Deleted user id:588282991298 from the databse.
+2021-01-22 : 18:07:48 - Created new user id:719281732877.
+2021-01-22 : 18:07:49 - Found user id: 719281732877 in database.
+2021-01-22 : 18:07:49 - Found disease for user id: 719281732877.
+2021-01-22 : 18:07:49 - Deleted user id:719281732877 from the databse.
+2021-01-22 : 18:08:40 - Created new user id:873640659932.
+2021-01-22 : 18:08:41 - Found user id: 873640659932 in database.
+2021-01-22 : 18:08:41 - Found disease for user id: 873640659932.
+2021-01-22 : 18:08:41 - Deleted user id:873640659932 from the databse.
+2021-01-22 : 18:08:47 - Created new user id:945244841044.
+2021-01-22 : 18:08:48 - Found user id: 945244841044 in database.
+2021-01-22 : 18:08:48 - Found disease for user id: 945244841044.
+2021-01-22 : 18:08:48 - Deleted user id:945244841044 from the databse.
+2021-01-22 : 18:09:31 - Created new user id:107640232465.
+2021-01-22 : 18:09:32 - Found user id: 107640232465 in database.
+2021-01-22 : 18:09:32 - Found two diseases for user id: 107640232465.
+2021-01-22 : 18:09:32 - Deleted user id:107640232465 from the databse.
+2021-01-22 : 18:10:25 - Created new user id:873021029754.
+2021-01-22 : 18:10:26 - Found user id: 873021029754 in database.
+2021-01-22 : 18:10:26 - Found two diseases for user id: 873021029754.
+2021-01-22 : 18:10:26 - Deleted user id:873021029754 from the databse.
+2021-01-22 : 18:11:06 - Created new user id:505777264904.
+2021-01-22 : 18:11:07 - Found user id: 505777264904 in database.
+2021-01-22 : 18:11:07 - Found two diseases for user id: 505777264904.
+2021-01-22 : 18:11:07 - Deleted user id:505777264904 from the databse.
+2021-01-22 : 18:22:29 - Created new user id:343609753829.
+2021-01-22 : 18:22:30 - Found user id: 343609753829 in database.
+2021-01-22 : 18:22:30 - Found disease for user id: 343609753829.
+2021-01-22 : 18:22:30 - Deleted user id:343609753829 from the databse.
+2021-01-22 : 18:22:33 - Sent Bronchitis disease infromation.
+2021-01-22 : 18:23:15 - Created new user id:150643801938.
+2021-01-22 : 18:23:16 - Found user id: 150643801938 in database.
+2021-01-22 : 18:23:16 - Found two diseases for user id: 150643801938.
+2021-01-22 : 18:23:16 - Deleted user id:150643801938 from the databse.
+2021-01-22 : 18:23:19 - Sent Candidiasis disease infromation.
+2021-01-22 : 18:24:19 - Created new user id:637135155765.
+2021-01-22 : 18:24:19 - Found user id: 637135155765 in database.
+2021-01-22 : 18:24:19 - Found two diseases for user id: 637135155765.
+2021-01-22 : 18:24:19 - Deleted user id:637135155765 from the databse.
+2021-01-22 : 18:24:22 - Sent Influenza disease infromation.
+2021-01-22 : 18:25:09 - Created new user id:482838420453.
+2021-01-22 : 18:25:10 - Found user id: 482838420453 in database.
+2021-01-22 : 18:25:10 - Found disease for user id: 482838420453.
+2021-01-22 : 18:25:10 - Deleted user id:482838420453 from the databse.
+2021-01-22 : 18:25:14 - Sent Paroxysmal Dyspnea disease infromation.
+2021-01-22 : 18:25:26 - Created new user id:482838420453.
+2021-01-22 : 18:25:27 - Found user id: 482838420453 in database.
+2021-01-22 : 18:25:28 - Found user id: 482838420453 in database.
+2021-01-22 : 18:25:28 - Found disease for user id: 482838420453.
+2021-01-22 : 18:25:28 - Deleted user id:482838420453 from the databse.
+2021-01-22 : 18:25:31 - Sent Neoplasm disease infromation.
+2021-01-22 : 18:25:47 - Sent Neoplasm disease infromation.
+2021-01-22 : 18:25:58 - Sent influenza disease infromation.
+2021-01-22 : 18:26:18 - Sent influenza disease infromation.
+2021-01-22 : 18:26:35 - Created new user id:908694453132.
+2021-01-22 : 18:26:35 - Found user id: 908694453132 in database.
+2021-01-22 : 18:26:35 - Found disease for user id: 908694453132.
+2021-01-22 : 18:26:35 - Deleted user id:908694453132 from the databse.
+2021-01-22 : 18:26:38 - Sent Pneumothorax disease infromation.

@@ -1,10 +1,10 @@
 import React from 'react';
-
+import load from "../img/loader.gif";
 import styled from 'styled-components';
 import ToControl from './ToControl';
 
 const Above = styled.div`
-    height: 27%;
+    height: 40%;
 `;
 
 const Wrapp = styled.div`
@@ -16,9 +16,8 @@ const Wrapp = styled.div`
 
 const Title = styled.p`
     margin: 0;
-    font-size: 40px;
+    font-size: 45px;
     text-align: center;
-    font-weight: bold;
     `;
 const Para = styled.p`
     margin: 10px 0 0 0;
@@ -59,6 +58,16 @@ const Next = styled.button`
     }
 `;
 
+const Loading = styled.button`
+    width: 150px;
+    height: 50px;
+    background: #0d1117;
+    border: none;
+    font-size: 30px;
+    font-weight: bold;
+    outline: none;
+`;
+
 const Btns = styled.div`
     height: 50px;
     margin-top: 20%;
@@ -68,10 +77,27 @@ const Btns = styled.div`
 class Disease extends React.Component {
 
     
-
+    state = {
+        i: <Loading><img src={load}></img></Loading>,
+        wiki: 0
+    }
+    
+    constructor(props){
+        super(props);
+        fetch("http://localhost:8080/description/" + props.name)
+            .then(res => res.json())
+                .then(
+                    (result) => {
+                            this.setState({i: <Next>Info</Next>, wiki: result.data}); // you are here
+                            console.log(this.state.wiki);
+                    }
+                )
+    }
+    
 
     render() {
 
+        
 
         return <Wrapp>
                 <Above />
@@ -79,8 +105,8 @@ class Disease extends React.Component {
                 <Para>{this.props.name}</Para>
                 
             <Btns>
-                <Exit onClick = {() => this.props.click()}>Exit</Exit>
-                <Next>Next</Next>
+                <Exit onClick = {() => this.props.click()}>Back</Exit>
+                {this.state.i}
             </Btns>
         </Wrapp>;
     }
