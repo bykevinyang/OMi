@@ -17,11 +17,12 @@ const Sym1 = styled.button`
         }
     }
 
-    background: linear-gradient(to right, #ffffff , #ffffff);
-    color: black;
+    background: #0d1117;
+    color: white;
     font-size:24px;
-    border: 5px solid white;
-    border-radius: 7px;
+    font-weight: bold;
+    border: 3px solid white;
+    border-radius: 10px;
     width: 285px;
     margin: 10px;
     vertical-align: top;
@@ -39,9 +40,7 @@ const Sym1 = styled.button`
     &:hover {
         background: white;
         color: black;
-        border: 5px solid black;
     }
-
 `;
 
 class Sym extends React.Component {

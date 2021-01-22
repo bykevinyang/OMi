@@ -4,18 +4,19 @@ import styled from 'styled-components';
 
 const B = styled.button`
 
-background-color: white;
-color: black;
-font-size:25px;
+background-color: #0d1117;
+color: white;
+font-weight: bold;
+font-size:30px;
 border: none;
-border-radius: 20px;
-width: 100px;
+border-radius: 7px;
+width: 200px;
 margin: 20px;
 margin-top:30px;
-height: 50px;
+height: 60px;
 
 &:hover {
-    background-color: #e9ecf2;
+    background-color: white;
     color: black;
 }
 
@@ -25,7 +26,7 @@ class BtnNext extends React.Component {
 
 
     render() {
-        return <B onClick = {() => this.props.click()}>More</B>;
+        return <B onClick = {() => this.props.click()}>not here</B>;
     }
 
 }
