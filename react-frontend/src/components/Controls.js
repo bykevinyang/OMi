@@ -121,7 +121,7 @@ class Controls extends React.Component{
          <Disease name = {this.state.dname} desc = {this.state.ddesc} click = {this.resetCtrls}/>
         </DWrap>
 
-        if (this.state.diseased === false) {
+        if (this.state.diseased !== true) {
 
             
             a = <Ask />;
@@ -271,7 +271,7 @@ class Controls extends React.Component{
                         this.setState({symptomBranch: temp, diseased: ddd, dname: ddname, ddesc: dddesc, blacklist: pq, firstTime: false, searchItems: si});
                     }
                 )
-        }, 500);
+        }, 1000);
 
         
 

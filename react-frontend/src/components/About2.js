@@ -32,7 +32,7 @@ const Wrapper = styled.div`
 //min-width: 895px;
 
 const CardL = styled.div`
-    width: 35%;
+    width: 445px;
     min-width: 443px;
     height: 180px;
     background: white;

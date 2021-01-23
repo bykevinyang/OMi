@@ -82,7 +82,7 @@ class Sym extends React.Component {
 
          let ret = <Sym1 onClick = {() => this.props.click(this.state.type)}> {this.props.type} </Sym1>;
         
-         if (this.state.type == "") ret = <ToControl></ToControl>;
+         //if (this.state.type == "") ret = <ToControl></ToControl>;
 
         return ret;
 

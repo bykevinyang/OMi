@@ -533,3 +533,18 @@
 2021-01-22 : 21:31:38 - Found disease for user id: 483081257426.
 2021-01-22 : 21:31:38 - Deleted user id:483081257426 from the databse.
 2021-01-22 : 21:31:42 - Sent Suicide Attempt disease infromation.
+2021-01-23 : 19:33:09 - Created new user id:407790382532.
+2021-01-23 : 19:33:13 - Found user id: 407790382532 in database.
+2021-01-23 : 19:33:13 - Found disease for user id: 407790382532.
+2021-01-23 : 19:33:13 - Deleted user id:407790382532 from the databse.
+2021-01-23 : 19:33:16 - Sent Upper Respiratory Infection disease infromation.
+2021-01-23 : 19:33:20 - Created new user id:407790382532.
+2021-01-23 : 19:33:23 - Found user id: 407790382532 in database.
+2021-01-23 : 19:33:23 - Found disease for user id: 407790382532.
+2021-01-23 : 19:33:23 - Deleted user id:407790382532 from the databse.
+2021-01-23 : 19:33:26 - Sent Hypoglycemia disease infromation.
+2021-01-23 : 19:33:28 - Created new user id:407790382532.
+2021-01-23 : 19:33:31 - Found user id: 407790382532 in database.
+2021-01-23 : 19:33:31 - Found disease for user id: 407790382532.
+2021-01-23 : 19:33:31 - Deleted user id:407790382532 from the databse.
+2021-01-23 : 19:33:34 - Sent Hypoglycemia disease infromation.
