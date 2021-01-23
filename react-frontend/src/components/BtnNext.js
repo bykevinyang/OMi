@@ -4,11 +4,11 @@ import styled from 'styled-components';
 
 const B = styled.button`
 
-background-color: #0d1117;
-color: white;
+background-color: white;
+color: black;
 font-weight: bold;
 font-size:30px;
-border: none;
+border: 3px solid white;
 border-radius: 7px;
 width: 200px;
 margin: 20px;
@@ -16,8 +16,8 @@ margin-top:30px;
 height: 60px;
 
 &:hover {
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
 }
 
 `;
