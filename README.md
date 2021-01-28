@@ -1,4 +1,4 @@
-##Live project viewable [here](https://medicalinformant.herokuapp.com/)
+## Live project viewable [here](https://medicalinformant.herokuapp.com/)
 
 ## Introduction
 COVID-19 has brought health front and center in the world consciousness. Now, more than ever, the global citizen is thinking about their health. Despite this, going to the doctor's office is as difficult as ever. Although doctors, nurses, and physicians are the world's Marvel and DC superheroes, the world faces a problem: a shortage. Med schools like Harvard, NYU, and BU have all started to deploy graduate students directly into the workforce, skipping the requisite years of fellowship. However, this shortage wasn’t caused by COVID-19, it was only made worse. According to the [Association of American Medical Colleges](https://www.aamc.org/news-insights/press-releases/new-findings-confirm-predictions-physician-shortage), by the year 2023, there will be a shortage of over 139-thousand physicians around the country. Our demand for healthcare has increased, yet the supply of doctors has decreased.
