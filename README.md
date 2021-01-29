@@ -13,8 +13,23 @@ Today, we unveil an app that will change how we diagnose diseases. Today, we int
 **OMi is a web-app that analyses user-inputted symptoms and informs them of possible diseases they have, suggesting forms of treatment**. Designed with simplicity in mind, all you need to do is go onto the site, indicate your symptoms, and boom -- *OMi pinpoints what disease you have and possible treatments for that disease.*
 
 Long gone are the days of calling your doctor’s office only to be redirected to the answering machine. Long gone are the days of searching through random health forums only to end up with unpronounceable words and incomprehensible descriptions. With OMi, **pinpointing and relieving your pain is as simple as a few clicks.** 
+
+# Screen Shots
+![OMi home page](https://github.com/kevin200617/OMi/blob/main/imgs/1.png?raw=true)
+<br>
+![OMi symptoms page-1](https://github.com/kevin200617/OMi/blob/main/imgs/2.png?raw=true)
+<br>
+![OMi symptoms page-2](https://github.com/kevin200617/OMi/blob/main/imgs/3.png?raw=true)
+
+## Setup Instructions:
+* Clone the repository: ```https://github.com/kevin200617/OMi```.
+* Change directory into flask: ```cd OMi/flask```.
+* Download requirements: ```python3 -m pip install requirements.```.
+* Run the flask app: ```python3 app.py```.
+* Head to ```localhost:8080:``` to use OMi website.
+
 ## How we built it
-OMi was built off of React.js and Flask. Using data provided by [Columbia’s Disease-Symptom Knowledge Database](https://people.dbmi.columbia.edu/~friedma/Projects/DiseaseSymptomKB/index.html), we created an algorithm that is able to sort out possible diseases based on inputted symptoms. With this dataset, OMi is able to recognize over **150+** different diseases, giving treatment suggestions for every single one of them (graciously supplied by our handmade web scrapers). 
+OMi was built off of React.js and Flask. Using data provided by [Columbia’s Disease-Symptom Knowledge Database](https://people.dbmi.columbia.edu/~friedma/Projects/DiseaseSymptomKB/index.html), we created an algorithm that is able to sort out possible diseases based on inputted symptoms. With this dataset, OMi is able to recognize over **150+** different diseases, giving treatment suggestions for every single one of them (graciously supplied by our own web scrapers). 
 
 The UI was built on Figma; the wireframe consists of the main page and the disease sorting pages. We’ve implemented all of these features in our demo. Figma is viewable [here](https://www.figma.com/file/GvtZjMf6w3tGAaJn8DjCmT/Telehealth-App?node-id=1%3A2)
 
@@ -32,7 +47,6 @@ Some of our most notable accomplishments are:
 - Our symptom to disease algorithm, that is able to pinpoint a disease given experiencing symptoms 
 - Our treatment web scrapers, scraping the web for info on how to medicate/treat your disease.
 - And last but not least, the website itself (it's not every day a bunch of algo-junkies develop a visually appealing product). 
-
 
 ## What we learned
 Our team learned a lot of things. For one, meeting new people is always a blast! We have team members split across the United States, Canada, South Africa, and Jordan. 
@@ -52,3 +66,11 @@ All in all, big things are in store for OMi. We hope to make it a full-fledged p
 ## Resources
 - OMi’s disease database was based off of [Columbia’s Disease-Symptom Knowledge database](https://people.dbmi.columbia.edu/~friedma/Projects/DiseaseSymptomKB/index.html)
 - OMi’s treatment and description information is provided by [Wikipedia](https://en.wikipedia.org/wiki/Main_Page)
+
+## Meet The team
+* [Adam Isenberg](https://github.com/Adam4920): Full stack developer.
+* [Rami Janini](https://github.com/JaniniRami): Backend Developer.
+* [Kevin Yang](https://github.com/kevin200617):  Backend Developer.
+* [Byeongjun Moon](https://github.com/bjmoonn): UI/UX Designer.
+
+
