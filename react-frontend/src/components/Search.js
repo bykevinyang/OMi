@@ -11,12 +11,15 @@ const OD = styled.div`
 
 function Search(props) {   
 
+        const [st, setSt] = useState(0);
+
 
                 const handleOnSearch = (string, cached) => {
                     // onSearch returns the string searched and if
                     // the values are cached. If the values are cached
                     // "cached" contains the cached values, if not, returns false
                     console.log(string, cached)
+                    console.log(props.items);
                   }
                 
                   const handleOnSelect = (item) => {
@@ -25,6 +28,8 @@ function Search(props) {
 
                     props.found(item.name);
 
+                    
+                    
                   }
                 
                   const handleOnFocus = () => {

@@ -5,8 +5,8 @@ import styled from 'styled-components';
 const OuterDiv = styled.div`
     margin: 0 auto;
     height: 300px;
-
-    margin-bottom: 20px;
+    margin-top: 75px;
+    margin-bottom: 40px;
 `;
 
 const Text1 = styled.div`
@@ -33,12 +33,17 @@ const Title = styled.div`
 const Go = styled.button`
     font-size: 30px;
     font-weight:bold;
-    width: 20%;
+    width: 250px;
     height: 80px;
     text-align: center;
     background: white;
     border: none;
     border-radius: 10px;
+
+    &:hover {
+        background: #d5d5d5;
+    }
+
 `;
 
 

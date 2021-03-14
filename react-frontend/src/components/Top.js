@@ -3,7 +3,11 @@ import React from 'react';
 class Top extends React.Component {
 
     componentDidMount(){
-        window.scrollTo(0, 0);
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behaviour: 'auto'
+        });
     }
 
     render(){return <div></div>}

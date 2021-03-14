@@ -2,13 +2,16 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+const Above = styled.div`
+    height: 50px;
+`;
+
 const AskWrap = styled.section`
         width: 75%;
         min-width: 300px;
         color: white;
         display: block;
         margin: auto;
-        margin-top: 50px;
         margin-bottom: 40px;
         font-weight: bold;
         font-size: 60px;
@@ -26,8 +29,10 @@ class Ask extends React.Component {
 
     render (){
 
-        return <AskWrap>{this.state.text}</AskWrap>;
-
+        return <section>
+            <Above />
+            <AskWrap>{this.state.text}</AskWrap>;
+        </section>
     }
 
     setText = (value) => {

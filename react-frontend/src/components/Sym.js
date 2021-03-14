@@ -17,15 +17,17 @@ const Sym1 = styled.button`
         }
     }
 
-    background: linear-gradient(to right, #ffffff , #e6f9fc);
-    color: black;
-    font-size:30px;
-    border: none;
+    background: #0d1117;
+    color: white;
+    font-size:24px;
+    font-weight: bold;
+    border: 3px solid white;
     border-radius: 10px;
-    width: 240px;
-    margin: 20px;
-    margin-top:50px;
-    height: 350px;
+    width: 285px;
+    margin: 10px;
+    vertical-align: top;
+    height: 120px;
+    padding: 5px;
 
     &:focus {
         outline: none;
@@ -38,22 +40,7 @@ const Sym1 = styled.button`
     &:hover {
         background: white;
         color: black;
-        border: 5px solid black;
     }
-
-`;
-const Text1 = styled.p`
-    font-size: 24px;
-    font-weight: bold;
-`;
-
-const Wrapp = styled.div`
-    margin-top: 50px;
-`;
-const Wrapp2 = styled.div`
-    margin-top: 50px;
-    max-height:150px;
-    height: 100px;
 `;
 
 class Sym extends React.Component {
@@ -93,18 +80,9 @@ class Sym extends React.Component {
 
          }
 
-         let ret = <Sym1 onClick = {() => this.props.click(this.state.type)}> 
-         <Wrapp>
-             <img src={x}></img>
-         </Wrapp>
-         <Wrapp2>
-             <Text1>{this.props.type}</Text1>
-         </Wrapp2>
-         
-             
-         </Sym1>;
+         let ret = <Sym1 onClick = {() => this.props.click(this.state.type)}> {this.props.type} </Sym1>;
         
-         if (this.state.type == "") ret = <ToControl></ToControl>;
+         //if (this.state.type == "") ret = <ToControl></ToControl>;
 
         return ret;
 
